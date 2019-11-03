@@ -61,7 +61,7 @@
       
       <div class="nav-bar-login-text">
         <p>Olá, seja bem-vindo</p>
-        <strong><a href="../usu_login/usu_login.html">Entrar</a></strong>
+        <strong><a href="/login">Entrar</a></strong>
       </div>
       <div class="nav-bar-carrinho">
         <strong class="carrinho-contador">0</strong>
