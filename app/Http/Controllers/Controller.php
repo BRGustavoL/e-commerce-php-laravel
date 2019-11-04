@@ -65,7 +65,6 @@ class Controller extends BaseController
     }
 
 
-
     public function deleta_produto($id) {
         DB::table('produtos')
         ->where('prod_id', '=', $id)->delete();
@@ -85,6 +84,29 @@ class Controller extends BaseController
         ->where('prod_id', '=', $id)->update([
             'prod_isDestaque' => 0
         ]);
+        return redirect('produtos');
+    }
+
+    public function cadastro_produto() {
+        $categorias = DB::table('categorias')
+        ->select('*')
+        ->get();
+        return view('dashboard.produtos.cadastrar', ['categorias' => $categorias]);
+    }
+
+    public function criar_produto(Request $req) {
+        $prod_nome = $req -> input('prod_nome');
+        $prod_categoria = $req -> input('prod_categoria');
+        $prod_quantidade = $req -> input('prod_quantidade');
+        $prod_preco = $req -> input('prod_preco');
+        $prod_imagem = $req -> file('prod_imagem');
+        $name = time().'.'.$prod_imagem->getClientOriginalExtension();
+        $destinationPath = public_path('/images');
+        $prod_imagem->move($destinationPath, $name);
+        // $prod_imagem = 'imagens/f416cf986a03976b31434467afd0dd65.jpg';
+        $produto = array('prod_nome'=>$prod_nome, 'prod_categoria'=>$prod_categoria, 
+        'prod_quantidade'=>$prod_quantidade, 'prod_preco'=>$prod_preco, 'prod_imagem'=>$prod_imagem);
+        DB::table('produtos')->insert($produto);
         return redirect('produtos');
     }
 }

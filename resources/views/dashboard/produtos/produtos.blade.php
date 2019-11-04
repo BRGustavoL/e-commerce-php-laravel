@@ -55,7 +55,7 @@
   </div>
   <div class="container dashboard-conteudo">
     <div class="btn-cadastrar-produto">
-      <a class="btn-cadastrar btn btn-primary" href="./page_cadastrar.php" role="button">+ Produto</a>
+      <a class="btn-cadastrar btn btn-primary" href="/cadastro_produto" role="button">+ Produto</a>
     </div>
     <table class="table">
       <thead>
@@ -74,7 +74,6 @@
       <tbody>
         {{ csrf_field() }}
         @foreach($produtos as $produto)
-        <?php //while($linha = mysqli_fetch_assoc($resultado)) { ?>
         <tr>
           <th scope="row">{{ $produto->prod_id }}</th>
           <td>{{ $produto->prod_nome }} </td>
@@ -95,7 +94,6 @@
           </td>
         </tr>
         @endforeach
-        <?php //} ?>
       </tbody>
     </table>
   </div>

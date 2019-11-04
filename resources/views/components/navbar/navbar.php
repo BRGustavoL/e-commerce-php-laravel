@@ -6,10 +6,10 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="./produtos/produtos.php">Produtos</a>
+        <a class="nav-link" href="/produtos">Produtos</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="../dashboard/categorias/categorias.php">Categorias</a>
+        <a class="nav-link" href="/categorias">Categorias</a>
       </li>
     </ul>
   </div>
