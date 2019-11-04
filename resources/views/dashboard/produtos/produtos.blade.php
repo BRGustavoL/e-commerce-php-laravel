@@ -1,28 +1,28 @@
 
 <?php
-	require_once("../../components/conexao/conexao.php");
-	if(isset($_GET["acao"]) == 1 ){
-		echo "Excluido com sucesso <br><br>";
-	}
+	// require_once("../../components/conexao/conexao.php");
+	// if(isset($_GET["acao"]) == 1 ){
+	// 	echo "Excluido com sucesso <br><br>";
+	// }
 
-  $sql = 
-  "select 
-	    p.prod_id,
-      p.prod_nome,
-      c.cate_nome,
-      p.prod_quantidade,
-      p.prod_preco,
-      p.prod_vendidos,
-      p.prod_isDestaque,
-      p.prod_isLancamento
-    from 
-      produtos as p
-    inner join 
-      categorias as c 
-    on 
-      p.prod_categoria = c.cate_id";
+  // $sql = 
+  // "select 
+	//     p.prod_id,
+  //     p.prod_nome,
+  //     c.cate_nome,
+  //     p.prod_quantidade,
+  //     p.prod_preco,
+  //     p.prod_vendidos,
+  //     p.prod_isDestaque,
+  //     p.prod_isLancamento
+  //   from 
+  //     produtos as p
+  //   inner join 
+  //     categorias as c 
+  //   on 
+  //     p.prod_categoria = c.cate_id";
 
-	$resultado = mysqli_query($conexao, $sql);
+	// $resultado = mysqli_query($conexao, $sql);
 ?>
 <!doctype html>
 <html lang="en">
@@ -72,23 +72,30 @@
         </tr>
       </thead>
       <tbody>
-        <?php while($linha = mysqli_fetch_assoc($resultado)) { ?>
+        {{ csrf_field() }}
+        @foreach($produtos as $produto)
+        <?php //while($linha = mysqli_fetch_assoc($resultado)) { ?>
         <tr>
-          <th scope="row"><?php echo $linha['prod_id']; ?></th>
-          <td><?php echo $linha['prod_nome']; ?> </td>
-          <td><?php echo $linha['cate_nome']; ?> </td>
-          <td><?php echo $linha['prod_preco']; ?> </td>
-          <td><?php echo $linha['prod_quantidade']; ?> </td>
-          <td><?php echo $linha['prod_vendidos']; ?> </td>
-          <td><?php echo $linha['prod_isDestaque']; ?></td>
-          <td><?php echo $linha['prod_isLancamento']; ?></td>
+          <th scope="row">{{ $produto->prod_id }}</th>
+          <td>{{ $produto->prod_nome }} </td>
+          <td>{{ $produto->cate_nome }}</td>
+          <td>{{ $produto->prod_preco }}</td>
+          <td>{{ $produto->prod_quantidade }}</td>
+          <td>{{ $produto->prod_vendidos }}</td>
+          <td>{{ $produto->prod_isDestaque }}</td>
+          <td>{{ $produto->prod_isLancamento }}</td>
           <td>
-            <?php echo "<a class='badge badge-primary' href=destacar.php?codigo=$linha[prod_id]>";?> + DESTAQUE </a>
-            <?php echo "<a class='badge badge-warning' href=page_editar.php?codigo=$linha[prod_id]>";?> Editar</a>
-            <?php echo "<a class='badge badge-danger' href=deletar.php?codigo=$linha[prod_id]>";?> Excluir</a>
+            @if (!$produto->prod_isDestaque)
+              <a class="badge badge-info" href="/destaca_produto/{{ $produto->prod_id }}">Adicionar Destaque</a>
+            @elseif ($produto->prod_isDestaque)
+              <a class="badge badge-info" href="/remover_destaque_produto/{{ $produto->prod_id }}">Remover Destaque</a>
+            @endif
+
+            <a class="badge badge-danger" href="/deleta_produto/{{ $produto->prod_id }}">Excluir</a>
           </td>
         </tr>
-        <?php } ?>
+        @endforeach
+        <?php //} ?>
       </tbody>
     </table>
   </div>

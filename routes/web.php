@@ -19,6 +19,11 @@ Route::get('/dashboard', ['uses' => 'Controller@dashboard']);
 Route::get('/produtos', ['uses' => 'Controller@produtos']);
 Route::get('/categorias', ['uses' => 'Controller@categorias']);
 
+Route::get('/deleta_produto/{id}', ['uses' => 'Controller@deleta_produto']);
+Route::get('/destaca_produto/{id}', ['uses' => 'Controller@destaca_produto']);
+Route::get('/remover_destaque_produto/{id}', ['uses' => 'Controller@remover_destaque_produto']);
+
+
 // Route Usuário
 Route::get('/login', ['uses' => 'Controller@usuario_login']);
 Route::get('/cadastro', ['uses' => 'Controller@usuario_cadastro']);
