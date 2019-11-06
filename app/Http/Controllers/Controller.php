@@ -7,6 +7,8 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Intervention\Image\Facades\Image;
 use DB;
 
 class Controller extends BaseController
@@ -100,12 +102,20 @@ class Controller extends BaseController
         $prod_quantidade = $req -> input('prod_quantidade');
         $prod_preco = $req -> input('prod_preco');
         $prod_imagem = $req -> file('prod_imagem');
-        $name = time().'.'.$prod_imagem->getClientOriginalExtension();
-        $destinationPath = public_path('/images');
-        $prod_imagem->move($destinationPath, $name);
-        // $prod_imagem = 'imagens/f416cf986a03976b31434467afd0dd65.jpg';
+        
+        $file = $prod_imagem;
+        $extension = $prod_imagem->getClientOriginalExtension();
+        $fileName = time() . random_int(100, 999) .'.' . $extension; 
+        $destinationPath = public_path('images/');
+        $url = 'http://'.$_SERVER['HTTP_HOST'].'/images/'.$fileName;
+        $fullPath = $destinationPath.$fileName;
+
+        if (!file_exists($destinationPath)) {
+            File::makeDirectory($destinationPath, 0775);
+        }
+        
         $produto = array('prod_nome'=>$prod_nome, 'prod_categoria'=>$prod_categoria, 
-        'prod_quantidade'=>$prod_quantidade, 'prod_preco'=>$prod_preco, 'prod_imagem'=>$prod_imagem);
+        'prod_quantidade'=>$prod_quantidade, 'prod_preco'=>$prod_preco, 'prod_imagem'=>$fullPath);
         DB::table('produtos')->insert($produto);
         return redirect('produtos');
     }
