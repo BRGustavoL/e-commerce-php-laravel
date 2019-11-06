@@ -84,18 +84,41 @@
           <td>{{ $produto->prod_isDestaque }}</td>
           <td>{{ $produto->prod_isLancamento }}</td>
           <td>
+            <a class="badge badge-primary" data-toggle="modal" data-target="#ExemploModalCentralizado" href="">Ver Produto</a>
             @if (!$produto->prod_isDestaque)
-              <a class="badge badge-info" href="/destaca_produto/{{ $produto->prod_id }}">Adicionar Destaque</a>
+              <a class="badge badge-primary" href="/destaca_produto/{{ $produto->prod_id }}">Adicionar Destaque</a>
             @elseif ($produto->prod_isDestaque)
-              <a class="badge badge-info" href="/remover_destaque_produto/{{ $produto->prod_id }}">Remover Destaque</a>
+              <a class="badge badge-primary" href="/remover_destaque_produto/{{ $produto->prod_id }}">Remover Destaque</a>
             @endif
-
             <a class="badge badge-danger" href="/deleta_produto/{{ $produto->prod_id }}">Excluir</a>
           </td>
         </tr>
         @endforeach
       </tbody>
     </table>
+    {{-- Modal Detalhes do Produto --}}
+    <div class="modal fade" id="ExemploModalCentralizado" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+          @foreach($produtos as $produto)
+            <h5 class="modal-title" id="TituloModalCentralizado"># {{ $produto->prod_id }} - {{ $produto->prod_nome }}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          @foreach($produtos as $produto)
+            <div class="modal-body">
+              Conteúdo do Produto
+            </div>
+          @endforeach
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{-- Fim Modal Detalhes do Produto --}}
   </div>
 
   <style>
