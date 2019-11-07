@@ -32,7 +32,7 @@ Route::get('/remover_destaque_produto/{id}', ['uses' => 'Controller@remover_dest
 // Route Usuário
 Route::get('/login', ['uses' => 'Controller@usuario_login']);
 Route::get('/cadastro', ['uses' => 'Controller@usuario_cadastro']);
-
+Route::get('/usuarios', ['uses' => 'Controller@usuarios']);
 // Métodos Usuário
 Route::post('/insert_usuario', ['uses' => 'Controller@insert_usuario']);
 Route::post('/valida_login_usuario', ['uses' => 'Controller@valida_login_usuario']);

@@ -19,6 +19,8 @@ class Controller extends BaseController
         return view('dashboard.dashboard');
     }
 
+    
+
     public function produtos() {
         $produtos = DB::table('produtos as p')
         ->select('p.prod_id','p.prod_nome', 'c.cate_nome', 'p.prod_quantidade', 'p.prod_preco', 'p.prod_vendidos', 'p.prod_isDestaque', 'p.prod_isLancamento')
@@ -42,6 +44,13 @@ class Controller extends BaseController
         ->get();
         return view('dashboard.categorias.categorias', ['categorias' => $categorias]);
     }
+    
+    public function usuarios() {
+        $usuarios = DB::table('usuarios')
+        ->select('*')
+        ->get();
+        return view('dashboard.usuarios.usuarios', ['usuarios' => $usuarios]);    
+    }
 
     public function loja() {
         return view('loja.loja');
@@ -60,7 +69,6 @@ class Controller extends BaseController
         $usu_senha = $req -> input('usu_senha');
         $data = array('usu_login'=>$usu_login, 'usu_senha'=>$usu_senha);
         DB::table('usuarios')->insert($data);
-        $this->getProdutosLoja();
         return view('usuario.login.login');
     }
 
