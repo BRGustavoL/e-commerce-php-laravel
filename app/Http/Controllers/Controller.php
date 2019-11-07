@@ -27,8 +27,20 @@ class Controller extends BaseController
         return view('dashboard.produtos.produtos', ['produtos' => $produtos]);
     }
 
+    // public function detalha_produto($id) {
+    //     $produto_detalhado = DB::table('produtos as p')
+    //     ->select('p.prod_id','p.prod_nome', 'c.cate_nome', 'p.prod_quantidade', 'p.prod_preco', 'p.prod_vendidos', 'p.prod_isDestaque', 'p.prod_isLancamento')
+    //     ->join('categorias as c', 'p.prod_categoria', '=', 'c.cate_id')
+    //     ->where('p.prod_id', '=', $id)
+    //     ->get();
+    //     return view('dashboard.produtos.produtos', ['produto_detalhado' => $produto_detalhado]);
+    // }
+
     public function categorias() {
-        return view('dashboard.categorias.categorias');
+        $categorias = DB::table('categorias')
+        ->select('*')
+        ->get();
+        return view('dashboard.categorias.categorias', ['categorias' => $categorias]);
     }
 
     public function loja() {
@@ -66,6 +78,11 @@ class Controller extends BaseController
         }
     }
 
+    public function deleta_categoria($id) {
+        DB::table('categorias')
+        ->where('cate_id', '=', $id)->delete();
+        return redirect('categorias');
+    }
 
     public function deleta_produto($id) {
         DB::table('produtos')
@@ -87,6 +104,10 @@ class Controller extends BaseController
             'prod_isDestaque' => 0
         ]);
         return redirect('produtos');
+    }
+
+    public function cadastro_categoria() {
+        return view('dashboard.categorias.cadastrar');
     }
 
     public function cadastro_produto() {
@@ -118,5 +139,12 @@ class Controller extends BaseController
         'prod_quantidade'=>$prod_quantidade, 'prod_preco'=>$prod_preco, 'prod_imagem'=>$fullPath);
         DB::table('produtos')->insert($produto);
         return redirect('produtos');
+    }
+
+    public function criar_categoria(Request $req) {
+        $cate_nome = $req -> input('cate_nome');
+        $categoria = array('cate_nome'=>$cate_nome);
+        DB::table('categorias')->insert($categoria);
+        return redirect('categorias');
     }
 }

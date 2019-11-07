@@ -18,10 +18,12 @@ Route::get('/', ['uses' => 'Controller@loja']);
 Route::get('/dashboard', ['uses' => 'Controller@dashboard']);
 Route::get('/produtos', ['uses' => 'Controller@produtos']);
 Route::get('/categorias', ['uses' => 'Controller@categorias']);
-
+Route::get('/cadastro_categoria', ['uses' => 'Controller@cadastro_categoria']);
 Route::get('/cadastro_produto', ['uses' => 'Controller@cadastro_produto']);
 Route::post('/criar_produto', ['uses' => 'Controller@criar_produto']);
+Route::post('/criar_categoria', ['uses' => 'Controller@criar_categoria']);
 
+Route::get('/deleta_categoria/{id}', ['uses' => 'Controller@deleta_categoria']);
 Route::get('/deleta_produto/{id}', ['uses' => 'Controller@deleta_produto']);
 Route::get('/destaca_produto/{id}', ['uses' => 'Controller@destaca_produto']);
 Route::get('/remover_destaque_produto/{id}', ['uses' => 'Controller@remover_destaque_produto']);

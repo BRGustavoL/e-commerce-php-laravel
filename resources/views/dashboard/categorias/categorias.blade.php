@@ -28,75 +28,34 @@
     </nav>
   </div>
   <div class="container dashboard-conteudo">
-    <div class="btn-cadastrar-produto">
-      <a class="btn-cadastrar btn btn-primary" href="/cadastro_produto" role="button">+ Produto</a>
+    <div class="btn-cadastrar-categoria">
+      <a class="btn-cadastrar btn btn-primary" href="/cadastro_categoria" role="button">+ Categoria</a>
     </div>
     <table class="table">
       <thead>
         <tr>
           <th scope="col">#</th>
           <th scope="col">Nome</th>
-          <th scope="col">Categoria</th>
-          <th scope="col">Preço</th>
-          <th scope="col">Qtd. Estoque</th>
-          <th scope="col">Qtd. Vendida</th>
-          <th scope="col">Em Destaque</th>
-          <th scope="col">Lançamento</th>
           <th scope="col">Ações</th>
         </tr>
       </thead>
       <tbody>
         {{ csrf_field() }}
-        @foreach($produtos as $produto)
+        @foreach($categorias as $categoria)
         <tr>
-          <th scope="row">{{ $produto->prod_id }}</th>
-          <td>{{ $produto->prod_nome }} </td>
-          <td>{{ $produto->cate_nome }}</td>
-          <td>{{ $produto->prod_preco }}</td>
-          <td>{{ $produto->prod_quantidade }}</td>
-          <td>{{ $produto->prod_vendidos }}</td>
-          <td>{{ $produto->prod_isDestaque }}</td>
-          <td>{{ $produto->prod_isLancamento }}</td>
+          <th scope="row">{{ $categoria->cate_id }}</th>
+          <td>{{ $categoria->cate_nome }} </td>
           <td>
-            <a class="badge badge-primary" data-toggle="modal" data-target="#ExemploModalCentralizado" href="">Ver Produto</a>
-            @if (!$produto->prod_isDestaque)
-              <a class="badge badge-primary" href="/destaca_produto/{{ $produto->prod_id }}">Adicionar Destaque</a>
-            @elseif ($produto->prod_isDestaque)
-              <a class="badge badge-primary" href="/remover_destaque_produto/{{ $produto->prod_id }}">Remover Destaque</a>
-            @endif
-            <a class="badge badge-danger" href="/deleta_produto/{{ $produto->prod_id }}">Excluir</a>
+            <a class="badge badge-danger" href="/deleta_categoria/{{ $categoria->cate_id }}">Excluir</a>
           </td>
         </tr>
         @endforeach
       </tbody>
     </table>
-    {{-- Modal Detalhes do Produto --}}
-    {{ csrf_field() }}
-    <div class="modal fade" id="ExemploModalCentralizado" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="TituloModalCentralizado">#</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          
-            <div class="modal-body">
-              Conteúdo do Produto
-            </div>
-          
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    {{-- Fim Modal Detalhes do Produto --}}
   </div>
 
   <style>
-    .btn-cadastrar-produto {
+    .btn-cadastrar-categoria {
       display: flex;
       justify-content: flex-end;
       margin-bottom: 20px;
