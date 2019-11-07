@@ -1,20 +1,3 @@
-<?php
-//if($_SESSION["LOGADO"] == "OK") {
-?>
-<?php
-	// require_once("../components/conexao/conexao.php");
-	// if(isset($_GET["acao"]) == 1 ){
-	// 	echo "Excluido com sucesso <br><br>";
-	// }
-
-  // $sql = "select prod_id, prod_nome, prod_preco, prod_imagem from produtos where prod_isDestaque = 0";
-  // $sql_destaques = "select prod_id, prod_nome, prod_preco, prod_imagem from produtos where prod_isDestaque = 1";
-  // $sql_destaques_contador = "select count(*) from produtos where prod_isDestaque = 1";
-
-  // $resultado = mysqli_query($conexao, $sql);
-  // $resultado_destaques = mysqli_query($conexao, $sql_destaques);
-  // $resultado_destaques_contador = mysqli_query($conexao, $sql_destaques_contador);
-?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -95,25 +78,19 @@
     <div class="produtos-destaque">
       <h2>Em destaque</h2>
       <small><strong>FIQUE LIGADO!</strong> Destaques novos toda semana!</small>
+      {{ csrf_field() }}
       <div class="cards-destaque">
-      <?php //echo $resultado_destaques_contador; ?>
-      <!-- <?php //if($resultado_destaques_contador <= 3) { ?> -->
-        <?php //while($destaque = mysqli_fetch_assoc($resultado_destaques)) { ?>
-          <div class="card destaque">
-            <img src="<?php //echo $destaque['prod_imagem']; ?>" class="card-img-top" alt="...">
-            <div class="card-body">
-              <a class="product-card-title" href=""><?php //echo $destaque['prod_nome']; ?></a>
-            </div>
-            <div class="card-footer">
-              <?php //echo "<a class='btn btn-primary' href=./detalhe_produto/detalhe_produto.php?codigo=$destaque[prod_id]>";?> Detalhes</a>
-              <!-- <a href="./detalhe_produto/detalhe_produto.php" class="btn btn-primary">Detalhes</a> -->
-              <!-- <a href="product.html" class="btn btn-warning">+ Carrinho</a> -->
-            </div>
+        @foreach($produtos_loja_destaque as $produto_destaque)
+        <div class="card destaque">
+          <img src="{{ $produto_destaque->prod_imagem }}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <a class="product-card-title" href=""></a>
           </div>
-        <?php //} ?>
-      <?php //} ?>
+          <div class="card-footer">
+          </div>
+        </div>
+        @endforeach
       </div>
-  
     </div>
     <div class="container commerce-content">
       <hr>
@@ -287,11 +264,4 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
 </body>
-
 </html>
-
-<?php
-// }else {
-//   header('Location: /aula2/src/usu_login/valida_usu_login.php');
-//}
-?>

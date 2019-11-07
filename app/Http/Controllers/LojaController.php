@@ -11,15 +11,15 @@ use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
 use DB;
 
-class Controller extends BaseController
+class LojaController extends BaseController
 {
 	use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-	public function dashboard() {
-		return view('dashboard.dashboard');
-	}
-
-	public function loja() {
-		return view('loja.loja');
-	}
+	public function produtos_loja_destaque() {
+    $produtos_destaque = DB::table('produtos')
+    ->select('prod_nome', 'prod_preco', 'prod_imagem')
+    ->where('prod_isDestaque', '=', 1)
+    ->get();
+    return view('loja.loja', ['produtos_loja_destaque'=>$produtos_destaque]);
+  }
 }
