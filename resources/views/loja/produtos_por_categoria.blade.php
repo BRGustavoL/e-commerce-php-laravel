@@ -10,47 +10,7 @@
 </head>
 <body>
   <div class="dashboard-nav">
-    <nav class="navbar navbar-expand-lg bg-amazon">
-      <div class="nav-bar-img">
-        <img class="nav-bar-logo" src="http://pngimg.com/uploads/amazon/amazon_PNG11.png">
-      </div>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      
-      <div class="collapse navbar-collapse search-group" id="navbarNav">
-        <div class="input-group">
-          <input type="text" class="form-control">
-          <div class="input-group-append">
-            <button class="btn btn-warning btn-pesquisar" type="button" id="button-addon2">Pesquisar</button>
-          </div>
-        </div>
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="/produtos_por_categoria">Produtos por Categoria</a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Mais Vendidos <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Mais Desejados</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Lançamentos</a>
-          </li>
-        </ul>
-      </div>
-      
-      <div class="nav-bar-login-text">
-        <p>Olá, seja bem-vindo</p>
-        <strong><a href="/login">Entrar</a></strong>
-      </div>
-      <div class="nav-bar-carrinho">
-        <strong class="carrinho-contador">0</strong>
-        <strong class="carrinho-contador">Carrinho</strong>
-      </div>
-    </nav>
+    @include('templates.navbar_loja.navbar_loja')
   </div>
   <div class="container filtro-categoria-select">
     <form class="filtro-categoria" action="/criar_produto" enctype="multipart/form-data" method="POST">

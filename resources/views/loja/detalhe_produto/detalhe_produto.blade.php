@@ -1,4 +1,7 @@
 @include('templates.header.header')
+  <div class="detalhe-navbar">
+    @include('templates.navbar_loja.navbar_loja')
+  </div>
   <div class="container detalhe-produto-content">
     <div class="detalhe-imagem">
       @foreach($produto_detalhado as $prod)

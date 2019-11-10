@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -9,6 +8,7 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
+use Mail;
 use DB;
 
 class LoginController extends BaseController
@@ -30,6 +30,10 @@ class LoginController extends BaseController
 			$usu_senha_cript = md5($usu_senha);
 			$data = array('usu_login'=>$usu_login, 'usu_email'=>$usu_email, 'usu_senha'=>$usu_senha_cript);
 			DB::table('usuarios')->insert($data);
+			Mail::send('email.email_user_register', ['usuario'=>$usu_login], function($message){
+				$message->from('gustavo.ecommerce.unoesc@gmail.com', 'Gustavo - E-Commerce');
+				$message->to('gustavolovera10@gmail.com');
+			});
 			return view('usuario.login.login');
     }
 
