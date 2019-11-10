@@ -1,39 +1,15 @@
-<?php
-	// require_once("../../components/conexao/conexao.php");
-	// if(isset($_GET["acao"]) == 1 ){
-	// 	echo "Excluido com sucesso <br><br>";
-	// }
-  // $codigo = $_GET["codigo"];
-	// $sql = "select * from produtos where prod_id = $codigo";
-	// $resultado = mysqli_query($conexao, $sql);
-?>
-
-<?php //while($linha = mysqli_fetch_assoc($resultado)) { ?>
-
-<?php //include("../../components/header/header.php") ?>
+@include('templates.header.header')
   <div class="container detalhe-produto-content">
     <div class="detalhe-imagem">
-      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="<?php //echo $linha['prod_imagem']; ?>" class="d-block w-100" alt="...">
-          </div>
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </div>
+      @foreach($produto_detalhado as $prod)
+      <img src="{{ $prod->prod_imagem }}" class="d-block w-100" alt="...">
+      {{ $prod->prod_imagem }}
     </div>
     <div class="detalhe-text">
-      <?php //echo "<h5>$linha[prod_nome]</h5>" ?>
-      <?php //echo "<small>Código: $linha[prod_id]</small>" ?>
-      <small>/</small>
-      <?php //echo "<small>Categoria: $linha[prod_categoria]</small>" ?>
+    
+      <h1>{{ $prod->prod_nome }}</h1>
+      <small>Código: {{ $prod->prod_id }} / Categoria: {{ $prod->prod_categoria }}</small>
+
       <hr>
       <p>Lorem ipsum dolor sit, amet consectetur 
         adipisicing elit. Fugiat natus pariatur iure, 
@@ -72,12 +48,13 @@
         <a href="" class="btn btn-warning btn-carrinho">+ Carrinho</a>
         <a href="carrinho.html" class="btn btn-success btn-comprar">Comprar</a>
       </div>
+    @endforeach
     </div>
   </div>
   <div class="container">
     <hr>
   </div>
-  <?php //} ?>
+
   <style>
     .detalhe-produto-content {
       display: flex;
@@ -137,4 +114,4 @@
     }
   </style>
 
-<?php //include("../../components/footer/footer.php") ?>
+@include('templates.footer.footer')

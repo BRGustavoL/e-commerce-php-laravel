@@ -16,10 +16,15 @@ class LojaController extends BaseController
 	use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
 	public function produtos_loja_destaque() {
+    $produtos = DB::table('produtos')
+    ->select('prod_id', 'prod_nome', 'prod_preco', 'prod_imagem')
+    ->where('prod_isDestaque', '=', 0)
+    ->get();
+
     $produtos_destaque = DB::table('produtos')
-    ->select('prod_nome', 'prod_preco', 'prod_imagem')
+    ->select('prod_id', 'prod_nome', 'prod_preco', 'prod_imagem')
     ->where('prod_isDestaque', '=', 1)
     ->get();
-    return view('loja.loja', ['produtos_loja_destaque'=>$produtos_destaque]);
+    return view('loja.loja', ['produtos'=>$produtos, 'produtos_loja_destaque'=>$produtos_destaque]);
   }
 }

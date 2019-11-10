@@ -12,8 +12,8 @@
 */
 
 //Route Loja
-Route::get('/', ['uses' => 'Controller@loja']);
-Route::get('/produtos_loja_destaque', ['uses' => 'LojaController@produtos_loja_destaque']);
+Route::get('/', ['uses' => 'LojaController@produtos_loja_destaque']);
+Route::get('/detalhe_produto/{id}', ['uses' => 'ProdutosController@detalhe_produto']);
 
 //Route Dashboard
 Route::get('/dashboard', ['uses' => 'Controller@dashboard']);
@@ -25,6 +25,7 @@ Route::post('/criar_produto', ['uses' => 'ProdutosController@criar_produto']);
 Route::get('/deleta_produto/{id}', ['uses' => 'ProdutosController@deleta_produto']);
 Route::get('/destaca_produto/{id}', ['uses' => 'ProdutosController@destaca_produto']);
 Route::get('/remover_destaque_produto/{id}', ['uses' => 'ProdutosController@remover_destaque_produto']);
+
 
 //Route Categorias (Dashboard)
 Route::get('/categorias', ['uses' => 'CategoriasController@categorias']);

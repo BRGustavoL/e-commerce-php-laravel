@@ -58,18 +58,21 @@ class ProdutosController extends BaseController
     $prod_quantidade = $req -> input('prod_quantidade');
     $prod_preco = $req -> input('prod_preco');
     $prod_imagem = $req -> file('prod_imagem');
-    $file = $prod_imagem;
     $extension = $prod_imagem->getClientOriginalExtension();
-    $fileName = time() . random_int(100, 999) .'.' . $extension; 
-    $destinationPath = public_path('images/');
-    $url = 'http://'.$_SERVER['HTTP_HOST'].'/images/'.$fileName;
-    $fullPath = $destinationPath.$fileName;
-    if (!file_exists($destinationPath)) {
-      File::makeDirectory($destinationPath, 0775);
-    }
+    $filename =time().'.'.$extension;
+    $prod_imagem->move('images/', $filename);
+    $db_imagem_path = 'images/'.$filename;
     $produto = array('prod_nome'=>$prod_nome, 'prod_categoria'=>$prod_categoria, 
-    'prod_quantidade'=>$prod_quantidade, 'prod_preco'=>$prod_preco, 'prod_imagem'=>$fullPath);
+    'prod_quantidade'=>$prod_quantidade, 'prod_preco'=>$prod_preco, 'prod_imagem'=>$db_imagem_path);
     DB::table('produtos')->insert($produto);
     return redirect('produtos');
+  }
+
+  public function detalhe_produto($id) {
+    $produto_detalhado = DB::table('produtos')
+    ->select('*')
+    ->where('prod_id', '=', $id)
+    ->get();
+    return view('loja.detalhe_produto.detalhe_produto', ['produto_detalhado' => $produto_detalhado]);
   }
 }

@@ -81,41 +81,47 @@
       {{ csrf_field() }}
       <div class="cards-destaque">
         @foreach($produtos_loja_destaque as $produto_destaque)
-        <div class="card destaque">
-          <img src="{{ $produto_destaque->prod_imagem }}" class="card-img-top" alt="...">
-          <div class="card-body">
-            <a class="product-card-title" href=""></a>
+          <div class="card destaque">
+            <img src="{{ $produto_destaque->prod_imagem }}" class="card-img-top" width="300" height="500" alt="IMAGE NOT FOUND">
+            <div class="card-body card-body-product">
+              <a class="product-card-title">{{ $produto_destaque->prod_nome }}</a>
+              <div class="product-card-price">
+                <strong>R$ {{ $produto_destaque->prod_preco }}</strong>
+              </div>
+            </div>
+            <div class="card-footer">
+            </div>
           </div>
-          <div class="card-footer">
-          </div>
-        </div>
         @endforeach
       </div>
     </div>
     <div class="container commerce-content">
       <hr>
       <div class="commerce-products">
-      <?php //while($linha = mysqli_fetch_assoc($resultado)) { ?>
-        <div class="commerce-product">
-            <img src="<?php //echo $linha['prod_imagem']; ?>" class="card-img-top" alt="...">
+        @foreach($produtos as $produto)
+          <div class="commerce-product">
+            <img src="{{ $produto->prod_imagem }}" class="card-img-top" width="300" height="500" alt="IMAGE NOT FOUND">
             <div class="card-body card-body-product">
-              <a class="product-card-title" href=""><?php //echo $linha['prod_nome']; ?></a>
+              <a class="product-card-title">{{ $produto->prod_nome }}</a>
               <div class="product-card-price">
-                <strong><?php //echo "R$ " . $linha['prod_preco']; ?></strong>
+                <strong>R$ {{ $produto->prod_preco }}</strong>
               </div>
             </div>
             <div class="card-footer">
-              <?php //echo "<a class='btn btn-primary' href=./detalhe_produto/detalhe_produto.php?codigo=$linha[prod_id]>";?> Detalhes</a>
-              <a href="product.html" class="btn btn-warning">+ Carrinho</a>
+              <a href="/detalhe_produto/{{ $produto->prod_id }}" class="btn btn-primary btn-produtos">Ver mais</a>
+              <a href="" class="btn btn-warning">+ Carrinho</a>
             </div>
-        </div>
-        <?php //} ?>
+          </div>
+        @endforeach
       </div>
       
     </div>
   </div>
 
   <style>
+    .btn-produtos {
+      margin-right: 10px;
+    }
     .bg-amazon {
       display: flex;
       justify-content: space-between;
