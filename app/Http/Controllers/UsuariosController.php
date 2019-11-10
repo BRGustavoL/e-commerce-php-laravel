@@ -30,7 +30,8 @@ class UsuariosController extends BaseController
     $usu_login = $req -> input('usu_login');
     $usu_email = $req -> input('usu_email');
     $usu_senha = $req -> input('usu_senha');
-    $usuario = array('usu_login'=>$usu_login, 'usu_senha'=>$usu_senha, 'usu_email'=>$usu_email);
+    $usu_senha_cript = md5($usu_senha);
+    $usuario = array('usu_login'=>$usu_login, 'usu_senha'=>$usu_senha_cript, 'usu_email'=>$usu_email);
     DB::table('usuarios')->insert($usuario);
     return redirect('usuarios');
   }

@@ -15,6 +15,18 @@ class ProdutosController extends BaseController
 {
   use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+  public function produtos_por_categoria($id) {
+    
+  }
+
+  public function produtos_por_categoria_select() {
+    $select_categorias = DB::table('categorias')
+    ->select('*')
+    ->get();
+
+    return view('loja.produtos_por_categoria', ['select_categorias'=>$select_categorias]);
+  }
+
   public function produtos() {
     $produtos = DB::table('produtos as p')
     ->select('p.prod_id','p.prod_nome', 'c.cate_nome', 'p.prod_quantidade', 'p.prod_preco', 'p.prod_vendidos', 'p.prod_isDestaque', 'p.prod_isLancamento')

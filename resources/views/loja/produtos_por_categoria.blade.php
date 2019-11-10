@@ -28,7 +28,7 @@
         </div>
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="/produtos_por_categoria_select">Produtos por Categoria</a>
+            <a class="nav-link" href="/produtos_por_categoria">Produtos por Categoria</a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="#">Mais Vendidos <span class="sr-only">(current)</span></a>
@@ -52,54 +52,19 @@
       </div>
     </nav>
   </div>
-  <div class="dashboard-conteudo">
-    
-    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="https://www.lg.com/in/images/TV/features/1nov1111111lgled.jpg" class="d-block w-100">
-        </div>
-        <div class="carousel-item">
-          <img src="https://www.lg.com/za/images/TV/features/LG-Nanocell-Hero-Banner_26082019-Desktop_v1.jpg" class="d-block w-100">
-        </div>
-        <div class="carousel-item">
-          <img src="https://www.lg.com/uk/images/TV/features/smarttv-banner-2018-D.jpg" class="d-block w-100">
-        </div>
-      </div>
-      <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-    </div>
-    <div class="produtos-destaque">
-      <h2>Em destaque</h2>
-      <small><strong>FIQUE LIGADO!</strong> Destaques novos toda semana!</small>
-      {{ csrf_field() }}
-      <div class="cards-destaque">
-        @foreach($produtos_loja_destaque as $produto_destaque)
-          <div class="card destaque">
-            <img src="{{ $produto_destaque->prod_imagem }}" class="card-img-top" width="300" height="500" alt="IMAGE NOT FOUND">
-            <div class="card-body card-body-product">
-              <a class="product-card-title">{{ $produto_destaque->prod_nome }}</a>
-              <div class="product-card-price">
-                <strong>R$ {{ $produto_destaque->prod_preco }}</strong>
-              </div>
-            </div>
-            <div class="card-footer">
-              <a href="/detalhe_produto/{{ $produto_destaque->prod_id }}" class="btn btn-primary btn-produtos">Ver mais</a>
-              <a href="" class="btn btn-warning">+ Carrinho</a>
-            </div>
-          </div>
+  <div class="container filtro-categoria-select">
+    <form class="filtro-categoria" action="/criar_produto" enctype="multipart/form-data" method="POST">
+      <label>Filtro por Categoria</label>
+      <select name="prod_categoria" class="form-control">
+        @foreach($select_categorias as $categoria)
+          <option value="{{ $categoria->cate_id }}"><a href="/produtos_por_categoria/{{ $categoria->cate_id }}">{{ $categoria->cate_nome }}</a></option>
+          {{-- <option value="{{ $categoria->cate_id }}">{{ $categoria->cate_nome }}</option>   --}}
         @endforeach
-      </div>
-    </div>
+      </select>
+    </form>
     <div class="container commerce-content">
       <hr>
-      <div class="commerce-products">
+      {{-- <div class="commerce-products">
         @foreach($produtos as $produto)
           <div class="commerce-product">
             <img src="{{ $produto->prod_imagem }}" class="card-img-top" width="300" height="500" alt="IMAGE NOT FOUND">
@@ -115,12 +80,16 @@
             </div>
           </div>
         @endforeach
-      </div>
+      </div> --}}
       
     </div>
   </div>
 
   <style>
+    .filtro-categoria-select {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
     .btn-produtos {
       margin-right: 10px;
     }

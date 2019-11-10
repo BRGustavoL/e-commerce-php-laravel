@@ -9,10 +9,14 @@
   <body>
     <div class="usu-login-content">
       <div class="card">
+        <div class="card-header">
+          <img class="card-header-logo" src="https://logodownload.org/wp-content/uploads/2014/04/amazon-logo.png">
+        </div>
         <form class="input-forms" action="/valida_login_usuario" method="post">
           {{ csrf_field() }}
-          <label>Login</label><br><br>
-          
+          <div class="main-title-top">
+            <label>Acessar</label>
+          </div>
           <div class="input-usuario">
             <label>Usuário</label>
             <input type="text" class="form-control" name="usu_login" placeholder="Digite um usuário">
@@ -21,7 +25,9 @@
             <label>Senha</label>
             <input type="password" class="form-control" name="usu_senha" placeholder="Digite uma senha">
           </div>
-          <button class="btn btn-outline-success" type="submit">Entrar</button>
+          <div class="btn-action">
+            <button class="btn btn-outline-warning" type="submit">Entrar</button>
+          </div>
           <div class="label-usu-cadastro">
             <a class="a-usu-cadastro" href="{{ url('/cadastro') }}">Não tem uma conta? Cadastre-se aqui...</a>
           </div>
@@ -30,6 +36,45 @@
     </div>
 
     <style>
+      body {
+        background-image: url('https://static.portalnovarejo.com.br/wp-content/uploads/2019/10/amazon-miniatura.png');
+        width: 100%;  
+        min-height: 100vh;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        padding: 15px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+      }
+      .card-header {
+        background-color: white;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .card-header-logo {
+        width: 150px;
+      }
+      .main-title-top {
+        display: flex;
+        justify-content: center;
+        font-size: 20px;
+      }
+      .btn-action {
+        display: flex;
+        justify-content: center;
+      }
+      .btn-action button {
+        width: 100%;
+      }
       .usu-login-content {
         display: flex;
         justify-content: center;

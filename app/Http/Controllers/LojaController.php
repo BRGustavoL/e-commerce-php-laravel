@@ -27,4 +27,8 @@ class LojaController extends BaseController
     ->get();
     return view('loja.loja', ['produtos'=>$produtos, 'produtos_loja_destaque'=>$produtos_destaque]);
   }
+
+  public function dashboard_loggout() {
+		return redirect('');
+	}
 }

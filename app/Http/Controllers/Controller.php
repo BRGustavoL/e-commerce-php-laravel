@@ -18,8 +18,4 @@ class Controller extends BaseController
 	public function dashboard() {
 		return view('dashboard.dashboard');
 	}
-
-	public function loja() {
-		return view('loja.loja');
-	}
 }

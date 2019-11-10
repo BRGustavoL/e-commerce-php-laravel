@@ -25,8 +25,10 @@ class LoginController extends BaseController
 
     public function insert_usuario(Request $req) {
 			$usu_login = $req -> input('usu_login');
+			$usu_email = $req -> input('usu_email');
 			$usu_senha = $req -> input('usu_senha');
-			$data = array('usu_login'=>$usu_login, 'usu_senha'=>$usu_senha);
+			$usu_senha_cript = md5($usu_senha);
+			$data = array('usu_login'=>$usu_login, 'usu_email'=>$usu_email, 'usu_senha'=>$usu_senha_cript);
 			DB::table('usuarios')->insert($data);
 			return view('usuario.login.login');
     }
@@ -34,14 +36,24 @@ class LoginController extends BaseController
     public function valida_login_usuario(Request $req) {
 			$usuario = $req -> input('usu_login');
 			$senha = $req -> input('usu_senha');
-			$admin = "admin";
-			$check_login_admin = DB::table('usuarios') -> where(['usu_login'=>$admin, 'usu_senha'=>$admin]) -> get();
-			if(count($check_login_admin) > 0) {
+			$senha_cript = md5($senha);
+
+			$user_admin = 'ADMIN';
+			$pass_admin = md5('MASTER');
+
+			$check_login = DB::table('usuarios')->where(['usu_login'=>$usuario, 'usu_senha'=>$senha_cript])->get();
+
+			foreach($check_login as $user) {
+				if($user->usu_login == $user_admin && $user->usu_senha == $pass_admin) {
 					return view('dashboard.dashboard');
-			}
-			if(count($check_login_admin) == 0) {
+				}
+				if($user->usu_login == $usuario && $user->usu_senha == $senha_cript) {
+					return view('dashboard_client.dashboard');
+				}
+				if($user->usu_login != $usuario && $user->usu_senha != $senha_cript) {
 					return view('usuario.login.login');
 					echo "Usuário não encontrado!";
+				}
 			}
     }
 }

@@ -14,9 +14,12 @@
 //Route Loja
 Route::get('/', ['uses' => 'LojaController@produtos_loja_destaque']);
 Route::get('/detalhe_produto/{id}', ['uses' => 'ProdutosController@detalhe_produto']);
+Route::get('/produtos_por_categoria/{id}', ['uses' => 'ProdutosController@produtos_por_categoria']);
+Route::get('/produtos_por_categoria_select', ['uses' => 'ProdutosController@produtos_por_categoria_select']);
 
 //Route Dashboard
 Route::get('/dashboard', ['uses' => 'Controller@dashboard']);
+Route::get('/dashboard_loggout', ['uses'=>'LojaController@dashboard_loggout']);
 
 //Route Produtos (Dashboard)
 Route::get('/produtos', ['uses' => 'ProdutosController@produtos']);

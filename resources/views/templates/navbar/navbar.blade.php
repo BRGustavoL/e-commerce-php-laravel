@@ -16,4 +16,14 @@
       </li>
     </ul>
   </div>
+  <form class="form-inline my-2 my-lg-0">
+    <a class="nav-link btn-sair" href="/dashboard_loggout">Sair</a>
+  </form>
 </nav>
+
+<style>
+.btn-sair {
+  color: black;
+  text-decoration: none;
+}
+</style>
