@@ -32,6 +32,7 @@ class LoginController extends BaseController
 			DB::table('usuarios')->insert($data);
 			Mail::send('email.email_user_register', ['usuario'=>$usu_login], function($message){
 				$message->from('gustavo.ecommerce.unoesc@gmail.com', 'Gustavo - E-Commerce');
+				$message->subject('Bem-vindo à Amazon E-Commerce');
 				$message->to('gustavolovera10@gmail.com');
 			});
 			return view('usuario.login.login');
