@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
 use Mail;
 use DB;
+use Cookie;
 
 class LoginController extends BaseController
 {
@@ -50,12 +51,14 @@ class LoginController extends BaseController
 
 			foreach($check_login as $user) {
 				if($user->usu_login == $user_admin && $user->usu_senha == $pass_admin) {
+					Cookie::queue('user', $user->usu_login, 120);
 					// $req->session()->put('admin', [md5('admin')]);
 					return view('dashboard.dashboard');
 				}
 				if($user->usu_login == $usuario && $user->usu_senha == $senha_cript) {
 					$req->session()->put('user', [md5('user')]);
-					return view('dashboard_client.dashboard');
+					Cookie::queue('user', $user->usu_login, 120);
+					return view('dashboard_client.dashboard_client');
 				}
 				if($user->usu_login != $usuario && $user->usu_senha != $senha_cript) {
 					return view('usuario.login.login');

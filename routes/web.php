@@ -50,3 +50,10 @@ Route::post('/valida_login_usuario', ['uses' => 'LoginController@valida_login_us
 Route::get('/valida_loggout_usuario', ['uses' => 'LoginController@valida_loggout_usuario']);
 Route::get('/esqueci_minha_senha', ['uses' => 'LoginController@esqueci_minha_senha']);
 Route::post('/reset_senha', ['uses' => 'LoginController@reset_senha']);
+
+//Route Minha Conta (Dashboard Usuário)
+Route::get('/minha_conta', ['uses' => 'DashboardClientController@minha_conta']);
+Route::get('/editar_minha_conta', ['uses' => 'DashboardClientController@editar_minha_conta']);
+Route::post('/salvar_minha_conta', ['uses' => 'DashboardClientController@salvar_minha_conta']);
+Route::get('/loggout', ['uses' => 'DashboardClientController@loggout']);
+
