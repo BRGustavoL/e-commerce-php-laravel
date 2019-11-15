@@ -15,7 +15,11 @@ use Cookie;
 class DashboardClientController extends BaseController
 {
   use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-  
+
+  public function dashboard_cliente() {
+    return view('dashboard_client.dashboard_client');
+  }
+
   public function minha_conta() {
     $user_cookie = Cookie::get('user');
     $dados_conta = DB::table('usuarios')
@@ -25,11 +29,14 @@ class DashboardClientController extends BaseController
     return view('dashboard_client.minha_conta.minha_conta', ['dados'=>$dados_conta]);
   }
 
-  public function loggout() {
-    Cookie::queue(
-      Cookie::forget('user')
-    );
-    return view('usuario.login.login');
+  public function meus_pedidos() {
+    $user_cookie = Cookie::get('user');
+    $dados_conta = DB::table('usuarios')
+    ->select('usu_id')
+    ->where('usu_login', '=', $user_cookie)
+    ->get();
+
+    return view('dashboard_client.minha_conta.minha_conta', ['dados'=>$dados_conta]);
   }
 
   public function editar_minha_conta() {
@@ -47,9 +54,11 @@ class DashboardClientController extends BaseController
     $usu_email = $req->input('usu_email');
     $usu_senha = $req->input('usu_senha');
     $usu_senha_crypt = md5($usu_senha);
-    DB::table('usuarios')
-    ->where('usu_id', $usu_id)
-    ->update(array('usu_login'=>$usu_login, 'usu_email'=>$usu_email, 'usu_senha'=>$usu_senha_crypt));
+    DB::update('update usuarios set usu_login = ? , usu_email = ?, usu_senha = ? where usu_id = ?', [$usu_login , $usu_email, $usu_senha_crypt, $usu_id]);
+    echo $usu_id;
+    // DB::table('usuarios')
+    // ->where('usu_id', $usu_id)
+    // ->update(array('usu_login'=>$usu_login, 'usu_email'=>$usu_email, 'usu_senha'=>$usu_senha_crypt));
     return redirect('minha_conta');
   }
 }

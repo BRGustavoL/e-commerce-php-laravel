@@ -6,6 +6,12 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item">
+        <a class="nav-link" href="/">Loja</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/dashboard_cliente">Dashboard</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="/minha_conta">Minha conta</a>
       </li>
       <li class="nav-item">
@@ -14,7 +20,7 @@
     </ul>
   </div>
   <form class="form-inline my-2 my-lg-0">
-    <a class="nav-link btn-sair" href="/loggout">Sair</a>
+    <a class="btn btn-outline-warning my-2 my-sm-0" href="/loggout">Sair</a>
   </form>
 </nav>
 

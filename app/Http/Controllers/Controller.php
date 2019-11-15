@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
 use DB;
+use Cookie;
 
 class Controller extends BaseController
 {
@@ -18,4 +19,11 @@ class Controller extends BaseController
 	public function dashboard() {
 		return view('dashboard.dashboard');
 	}
+	
+  public function loggout() {
+    Cookie::queue(
+      Cookie::forget('user')
+    );
+    return redirect('');
+  }
 }

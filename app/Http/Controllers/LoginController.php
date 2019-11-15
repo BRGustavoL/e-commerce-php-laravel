@@ -52,7 +52,6 @@ class LoginController extends BaseController
 			foreach($check_login as $user) {
 				if($user->usu_login == $user_admin && $user->usu_senha == $pass_admin) {
 					Cookie::queue('user', $user->usu_login, 120);
-					// $req->session()->put('admin', [md5('admin')]);
 					return view('dashboard.dashboard');
 				}
 				if($user->usu_login == $usuario && $user->usu_senha == $senha_cript) {
@@ -67,12 +66,6 @@ class LoginController extends BaseController
 			}
 		}
 		
-		public function valida_loggout_usuario(Request $req) {
-			$session = $req->session()->flush();
-			// echo $session;
-			return view('usuario.login.login');
-		}
-
 		public function esqueci_minha_senha() {
 			return view('usuario.esqueci_senha.esqueci_senha');
 		}

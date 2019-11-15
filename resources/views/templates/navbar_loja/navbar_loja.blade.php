@@ -32,7 +32,11 @@
   
   <div class="nav-bar-login-text">
     <p>Olá, seja bem-vindo</p>
-    <strong><a href="/login">Entrar</a></strong>
+    @if ($user_cookie = Cookie::get('user'))
+      <strong><a href="/dashboard_cliente">{{ $user_cookie }}</a></strong>
+    @else
+      <strong><a href="/login">Entrar</a></strong>
+    @endif
   </div>
   <div class="nav-bar-carrinho">
     <strong class="carrinho-contador">0</strong>

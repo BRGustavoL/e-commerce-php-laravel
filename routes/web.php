@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/loggout', ['uses' => 'Controller@loggout']);
 //Route Loja
 Route::get('/', ['uses' => 'LojaController@produtos_loja_destaque']);
 Route::get('/detalhe_produto/{id}', ['uses' => 'ProdutosController@detalhe_produto']);
@@ -28,7 +28,6 @@ Route::post('/criar_produto', ['uses' => 'ProdutosController@criar_produto']);
 Route::get('/deleta_produto/{id}', ['uses' => 'ProdutosController@deleta_produto']);
 Route::get('/destaca_produto/{id}', ['uses' => 'ProdutosController@destaca_produto']);
 Route::get('/remover_destaque_produto/{id}', ['uses' => 'ProdutosController@remover_destaque_produto']);
-
 
 //Route Categorias (Dashboard ADMIN)
 Route::get('/categorias', ['uses' => 'CategoriasController@categorias']);
@@ -51,9 +50,16 @@ Route::get('/valida_loggout_usuario', ['uses' => 'LoginController@valida_loggout
 Route::get('/esqueci_minha_senha', ['uses' => 'LoginController@esqueci_minha_senha']);
 Route::post('/reset_senha', ['uses' => 'LoginController@reset_senha']);
 
+
+//Route Dashboard Cliente
+Route::get('/dashboard_cliente', ['uses' => 'DashboardClientController@dashboard_cliente']);
+
 //Route Minha Conta (Dashboard Usuário)
 Route::get('/minha_conta', ['uses' => 'DashboardClientController@minha_conta']);
 Route::get('/editar_minha_conta', ['uses' => 'DashboardClientController@editar_minha_conta']);
 Route::post('/salvar_minha_conta', ['uses' => 'DashboardClientController@salvar_minha_conta']);
-Route::get('/loggout', ['uses' => 'DashboardClientController@loggout']);
+
+
+//Route Meus Pedidos (Dashboard Usuário)
+Route::get('/meus_pedidos', ['uses' => 'DashboardClientController@meus_pedidos']);
 
