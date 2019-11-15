@@ -30,8 +30,8 @@ class LoginController extends BaseController
 			$usu_senha_cript = md5($usu_senha);
 			$data = array('usu_login'=>$usu_login, 'usu_email'=>$usu_email, 'usu_senha'=>$usu_senha_cript);
 			DB::table('usuarios')->insert($data);
-			Mail::send('email.email_user_register', ['usuario'=>$usu_login], function($message){
-				$message->from('gustavo.ecommerce.unoesc@gmail.com', 'Gustavo - E-Commerce');
+			Mail::send('email.email_user_register', ['usuario'=>$usu_login, 'senha'=>$usu_senha, 'email'=>$usu_email], function($message){
+				$message->from('gustavolovera10@gmail.com', 'Gustavo - E-Commerce');
 				$message->subject('Bem-vindo à Amazon E-Commerce');
 				$message->to('gustavolovera10@gmail.com');
 			});
@@ -50,9 +50,11 @@ class LoginController extends BaseController
 
 			foreach($check_login as $user) {
 				if($user->usu_login == $user_admin && $user->usu_senha == $pass_admin) {
+					// $req->session()->put('admin', [md5('admin')]);
 					return view('dashboard.dashboard');
 				}
 				if($user->usu_login == $usuario && $user->usu_senha == $senha_cript) {
+					$req->session()->put('user', [md5('user')]);
 					return view('dashboard_client.dashboard');
 				}
 				if($user->usu_login != $usuario && $user->usu_senha != $senha_cript) {
@@ -60,5 +62,30 @@ class LoginController extends BaseController
 					echo "Usuário não encontrado!";
 				}
 			}
-    }
+		}
+		
+		public function valida_loggout_usuario(Request $req) {
+			$session = $req->session()->flush();
+			// echo $session;
+			return view('usuario.login.login');
+		}
+
+		public function esqueci_minha_senha() {
+			return view('usuario.esqueci_senha.esqueci_senha');
+		}
+
+		public function reset_senha(Request $req) {
+			$senha_temporaria = '1234';
+			$senha_temporaria_crypt = md5('1234');
+			$esq_email = $req -> input('esq_email');
+			$pesquisa_usuario = DB::table('usuarios')
+			->where('usu_email', '=', $esq_email)
+			->update(['usu_senha' => $senha_temporaria_crypt]);
+			Mail::send('email.email_forget_password', ['senha'=>$senha_temporaria], function($message){
+				$message->from('gustavolovera10@gmail.com', 'Nova senha - E-Commerce');
+				$message->subject('Recuperação de senha Amazon E-Commerce');
+				$message->to('gustavolovera10@gmail.com');
+			});
+			return view('usuario.login.login');
+		}
 }

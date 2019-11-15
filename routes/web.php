@@ -47,3 +47,6 @@ Route::get('/login', ['uses' => 'LoginController@usuario_login']);
 Route::get('/cadastro', ['uses' => 'LoginController@usuario_cadastro']);
 Route::post('/insert_usuario', ['uses' => 'LoginController@insert_usuario']);
 Route::post('/valida_login_usuario', ['uses' => 'LoginController@valida_login_usuario']);
+Route::get('/valida_loggout_usuario', ['uses' => 'LoginController@valida_loggout_usuario']);
+Route::get('/esqueci_minha_senha', ['uses' => 'LoginController@esqueci_minha_senha']);
+Route::post('/reset_senha', ['uses' => 'LoginController@reset_senha']);

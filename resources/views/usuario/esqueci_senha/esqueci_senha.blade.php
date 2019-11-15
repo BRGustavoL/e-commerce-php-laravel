@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Login</title>
+    <title>Esqueci minha senha</title>
   </head>
   <body>
     <div class="usu-login-content">
@@ -12,25 +12,17 @@
         <div class="card-header">
           <img class="card-header-logo" src="https://logodownload.org/wp-content/uploads/2014/04/amazon-logo.png">
         </div>
-        <form class="input-forms" action="/valida_login_usuario" method="post">
+        <form class="input-forms" action="/reset_senha" method="post">
           {{ csrf_field() }}
           <div class="main-title-top">
-            <label>Acessar</label>
+            <label>Esqueci minha senha</label>
           </div>
           <div class="input-usuario">
-            <label>Usuário</label>
-            <input type="text" class="form-control" name="usu_login" placeholder="Digite um usuário">
-          </div>
-          <div class="input-senha">
-            <label>Senha</label>
-            <input type="password" class="form-control" name="usu_senha" placeholder="Digite uma senha">
+            <label>E-mail</label>
+            <input type="email" class="form-control" name="esq_email" placeholder="Digite um e-mail válido">
           </div>
           <div class="btn-action">
-            <button class="btn btn-outline-warning" type="submit">Entrar</button>
-          </div>
-          <div class="label-usu-cadastro">
-            <a class="a-usu-cadastro" href="{{ url('/esqueci_minha_senha') }}">Esqueci minha senha</a><br>
-            <a class="a-usu-cadastro" href="{{ url('/cadastro') }}">Não tem uma conta? Cadastre-se aqui...</a>
+            <button class="btn btn-outline-warning" type="submit">Enviar</button>
           </div>
         </form>
       </div>
@@ -108,33 +100,3 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
 </html>
-
-<?php
-  // $login = $_POST["usu_login"];
-  // $senha = $_POST["usu_senha"];
-  // $senha = md5($senha);
-
-  // if (!$login == '' && !$senha == '') {
-  //   $sql = "select * from usuarios where usu_login = '{$login}' and usu_senha = '{$senha}'";
-  //   $conexao = mysqli_connect("localhost", "root", "", "unoesc");
-
-  //   $resultado = mysqli_query($conexao, $sql);
-
-  //   while ($linha = mysqli_fetch_assoc($resultado)) {
-  //     $login_BD = $linha["usu_login"]; 
-  //     $senha_BD = $linha["usu_senha"];
-  //   }
-
-  //   if ($login == $login_BD && $senha == $senha_BD){
-  //     session_start();
-  //     $_SESSION["LOGADO"] = "OK";
-  //     header('Location: /aula2/src/dashboard/dashboard.php');
-  //   }
-  //   else {
-  //     header('Location: /aula2/src/usu_login/usu_login.html');
-  //   }
-  // }
-  // else {
-  //   header('Location: /aula2/src/usu_login/usu_login.html');
-  // }
-?>

@@ -17,7 +17,7 @@
     </ul>
   </div>
   <form class="form-inline my-2 my-lg-0">
-    <a class="nav-link btn-sair" href="/dashboard_loggout">Sair</a>
+    <a class="nav-link btn-sair" href="/valida_loggout_usuario">Sair</a>
   </form>
 </nav>
 
