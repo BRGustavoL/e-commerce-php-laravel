@@ -30,9 +30,7 @@
           </tbody>
         </table>
         <div class="card-footer">
-          <small>Subtotal: R$ 5.980,00 + R$ 47,90 (Frete)</small>
-          <hr>
-          <p>Total: R$ 6.027,90</p>
+          <p>Total: R$ {{ $pedido->ped_total }}</p>
         </div>
       </div>
       <div class="card carrinho-pagamento">

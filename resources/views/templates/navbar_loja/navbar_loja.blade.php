@@ -40,12 +40,19 @@
     @endif
   </div>
   <div class="nav-bar-carrinho">
-    <strong class="carrinho-contador">0</strong>
-    <strong class="carrinho-contador">Carrinho</strong>
+    <a href="/carrinho">
+      <img class="carrinho-img" src="images/cart.svg" alt="..." >
+    </a>
   </div>
 </nav>
 
 <style>
+.carrinho-img {
+  width: 35px;
+  height: 35px;
+  color: #FF9900;
+  
+}
 .btn-produtos {
   margin-right: 10px;
 }

@@ -111,14 +111,27 @@ class ProdutosController extends BaseController
     $ped_total = $produto_unitario * 1;
     $ped_date = date('Y-m-d');
 
+    $pedido = array('ped_produto'=>$produto_id, 'ped_usuario'=>$usuario_id, 'ped_quantidade'=>'1', 'ped_unitario'=>$produto_unitario, 'ped_total'=>$ped_total, 'ped_cep'=>'89803210', 'ped_status'=>'criado', 'ped_criado'=>$ped_date);
+    DB::table('pedidos')
+    ->insert($pedido);
+    
+    return redirect('');
+  }
 
+  public function carrinho() {
+    $user_cookie = Cookie::get('user');
     if($user_cookie) {
-      $pedido = array('ped_produto'=>$produto_id, 'ped_usuario'=>$usuario_id, 'ped_quantidade'=>'1', 'ped_unitario'=>$produto_unitario, 'ped_total'=>$ped_total, 'ped_cep'=>'89803210', 'ped_status'=>'criado', 'ped_criado'=>$ped_date);
-      DB::table('pedidos')
-      ->insert($pedido);
+      $usuario = DB::table('usuarios')
+      ->select('usu_id')
+      ->where('usu_login', $user_cookie)
+      ->get();
+      foreach ($usuario as $usu) {
+        $user_id = $usu->usu_id;
+      }
+
       $pedidos = DB::table('pedidos')
       ->select('*')
-      ->where('ped_usuario', $usuario_id)
+      ->where('ped_usuario', $user_id)
       ->get();
       return view('loja.finalizar_compra.finalizar_compra', ['pedidos'=>$pedidos]);
     }
