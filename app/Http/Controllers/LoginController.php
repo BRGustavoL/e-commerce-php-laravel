@@ -55,9 +55,9 @@ class LoginController extends BaseController
 					return view('dashboard.dashboard');
 				}
 				if($user->usu_login == $usuario && $user->usu_senha == $senha_cript) {
-					$req->session()->put('user', [md5('user')]);
+					// $req->session()->put('user', [md5('user')]);
 					Cookie::queue('user', $user->usu_login, 120);
-					return view('dashboard_client.dashboard_client');
+					return redirect('');
 				}
 				if($user->usu_login != $usuario && $user->usu_senha != $senha_cript) {
 					return view('usuario.login.login');

@@ -34,6 +34,7 @@
     <p>Olá, seja bem-vindo</p>
     @if ($user_cookie = Cookie::get('user'))
       <strong><a href="/dashboard_cliente">{{ $user_cookie }}</a></strong>
+      <strong><a href="/loggout">Sair</a></strong>
     @else
       <strong><a href="/login">Entrar</a></strong>
     @endif

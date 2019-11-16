@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
 use DB;
+use Cookie;
 
 class ProdutosController extends BaseController
 {
@@ -87,4 +88,41 @@ class ProdutosController extends BaseController
     ->get();
     return view('loja.detalhe_produto.detalhe_produto', ['produto_detalhado' => $produto_detalhado]);
   }
+
+  public function cria_pedido(Request $req, $prod_id) {
+    $user_cookie = Cookie::get('user');
+    $produto = DB::table('produtos')
+    ->select('prod_id', 'prod_preco')
+    ->where('prod_id', $prod_id)
+    ->get();
+    $usuario = DB::table('usuarios')
+    ->select('usu_id')
+    ->where('usu_login', $user_cookie)
+    ->get();
+    $ped_quantidade = $req->input('ped_quantidade');
+    $ped_cep = $req->input('ped_cep');
+    foreach ($produto as $prod) {
+      $produto_id = $prod->prod_id;
+      $produto_unitario = $prod->prod_preco;
+    }
+    foreach ($usuario as $usu) {
+      $usuario_id = $usu->usu_id;
+    }
+    $ped_total = $produto_unitario * 1;
+    $ped_date = date('Y-m-d');
+
+
+    if($user_cookie) {
+      $pedido = array('ped_produto'=>$produto_id, 'ped_usuario'=>$usuario_id, 'ped_quantidade'=>'1', 'ped_unitario'=>$produto_unitario, 'ped_total'=>$ped_total, 'ped_cep'=>'89803210', 'ped_status'=>'criado', 'ped_criado'=>$ped_date);
+      DB::table('pedidos')
+      ->insert($pedido);
+      $pedidos = DB::table('pedidos')
+      ->select('*')
+      ->where('ped_usuario', $usuario_id)
+      ->get();
+      return view('loja.finalizar_compra.finalizar_compra', ['pedidos'=>$pedidos]);
+    }
+    return redirect('');
+  }
+
 }
