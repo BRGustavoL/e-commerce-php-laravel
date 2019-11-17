@@ -49,14 +49,18 @@ class LoginController extends BaseController
 
 			$check_login = DB::table('usuarios')->where(['usu_login'=>$usuario, 'usu_senha'=>$senha_cript])->get();
 
+			$log_entrada = date('Y:m:d H:i');
+			
+
 			foreach($check_login as $user) {
 				if($user->usu_login == $user_admin && $user->usu_senha == $pass_admin) {
-					Cookie::queue('user', $user->usu_login, 120);
+					Cookie::queue('user', $user->usu_login, 120);			
+					Cookie::queue('in', $log_entrada, 120);			
 					return view('dashboard.dashboard');
 				}
 				if($user->usu_login == $usuario && $user->usu_senha == $senha_cript) {
-					// $req->session()->put('user', [md5('user')]);
 					Cookie::queue('user', $user->usu_login, 120);
+					Cookie::queue('in', $log_entrada, 120);	
 					return redirect('');
 				}
 				if($user->usu_login != $usuario && $user->usu_senha != $senha_cript) {
