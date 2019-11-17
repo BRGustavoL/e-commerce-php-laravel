@@ -91,30 +91,32 @@ class ProdutosController extends BaseController
 
   public function cria_pedido(Request $req, $prod_id) {
     $user_cookie = Cookie::get('user');
-    $produto = DB::table('produtos')
-    ->select('prod_id', 'prod_preco')
-    ->where('prod_id', $prod_id)
-    ->get();
-    $usuario = DB::table('usuarios')
-    ->select('usu_id')
-    ->where('usu_login', $user_cookie)
-    ->get();
-    $ped_quantidade = $req->input('ped_quantidade');
-    $ped_cep = $req->input('ped_cep');
-    foreach ($produto as $prod) {
-      $produto_id = $prod->prod_id;
-      $produto_unitario = $prod->prod_preco;
-    }
-    foreach ($usuario as $usu) {
-      $usuario_id = $usu->usu_id;
-    }
-    $ped_total = $produto_unitario * 1;
-    $ped_date = date('Y-m-d');
+    if($user_cookie) {
+      $produto = DB::table('produtos')
+      ->select('prod_id', 'prod_preco')
+      ->where('prod_id', $prod_id)
+      ->get();
+      $usuario = DB::table('usuarios')
+      ->select('usu_id')
+      ->where('usu_login', $user_cookie)
+      ->get();
+      $ped_quantidade = $req->input('ped_quantidade');
+      $ped_cep = $req->input('ped_cep');
+      foreach ($produto as $prod) {
+        $produto_id = $prod->prod_id;
+        $produto_unitario = $prod->prod_preco;
+      }
+      foreach ($usuario as $usu) {
+        $usuario_id = $usu->usu_id;
+      }
+      $ped_total = $produto_unitario * 1;
+      $ped_date = date('Y-m-d');
 
-    $pedido = array('ped_produto'=>$produto_id, 'ped_usuario'=>$usuario_id, 'ped_quantidade'=>'1', 'ped_unitario'=>$produto_unitario, 'ped_total'=>$ped_total, 'ped_cep'=>'89803210', 'ped_status'=>'criado', 'ped_criado'=>$ped_date);
-    DB::table('pedidos')
-    ->insert($pedido);
-    
+      $pedido = array('ped_produto'=>$produto_id, 'ped_usuario'=>$usuario_id, 'ped_quantidade'=>'1', 'ped_unitario'=>$produto_unitario, 'ped_total'=>$ped_total, 'ped_cep'=>'89803210', 'ped_status'=>'criado', 'ped_criado'=>$ped_date);
+      DB::table('pedidos')
+      ->insert($pedido);
+      return redirect('carrinho');
+    }
     return redirect('');
   }
 
@@ -128,7 +130,6 @@ class ProdutosController extends BaseController
       foreach ($usuario as $usu) {
         $user_id = $usu->usu_id;
       }
-
       $pedidos = DB::table('pedidos')
       ->select('*')
       ->where('ped_usuario', $user_id)
@@ -136,6 +137,13 @@ class ProdutosController extends BaseController
       return view('loja.finalizar_compra.finalizar_compra', ['pedidos'=>$pedidos]);
     }
     return redirect('');
+  }
+
+  public function exclui_pedido($id) {
+    DB::table('pedidos')
+    ->where('ped_id', $id)
+    ->delete();
+    return redirect('carrinho');
   }
 
 }

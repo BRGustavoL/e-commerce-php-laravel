@@ -58,7 +58,7 @@
         </div>
         <hr>
         <div class="buttons-produto-acoes">
-          <a href="" class="btn btn-warning btn-carrinho">+ Carrinho</a>
+          <a href="/carrinho" class="btn btn-warning btn-carrinho">+ Carrinho</a>
           <a href="/cria_pedido/{{ $prod->prod_id }}" class="btn btn-success btn-comprar">Comprar</a>
         </div>
       @endforeach

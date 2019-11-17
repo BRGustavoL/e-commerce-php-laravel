@@ -15,7 +15,7 @@
         <a class="nav-link" href="/minha_conta">Minha conta</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="">Meus pedidos</a>
+        <a class="nav-link" href="/meus_pedidos">Meus pedidos</a>
       </li>
     </ul>
   </div>

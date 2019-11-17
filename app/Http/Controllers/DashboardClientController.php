@@ -35,8 +35,14 @@ class DashboardClientController extends BaseController
     ->select('usu_id')
     ->where('usu_login', '=', $user_cookie)
     ->get();
-
-    return view('dashboard_client.minha_conta.minha_conta', ['dados'=>$dados_conta]);
+    foreach ($dados_conta as $dado) {
+      $dado_id = $dado->usu_id;
+    }
+    $meus_pedidos = DB::table('pedidos')
+    ->select('*')
+    ->where('ped_usuario', $dado_id)
+    ->get();
+    return view('dashboard_client.meus_pedidos.meus_pedidos', ['meus_pedidos'=>$meus_pedidos]);
   }
 
   public function editar_minha_conta() {

@@ -41,7 +41,7 @@
   </div>
   <div class="nav-bar-carrinho">
     <a href="/carrinho">
-      <img class="carrinho-img" src="images/cart.svg" alt="..." >
+      <img class="carrinho-img" src="https://icon-library.net/images/cart-icon-png-white/cart-icon-png-white-16.jpg" alt="..." >
     </a>
   </div>
 </nav>
@@ -50,8 +50,6 @@
 .carrinho-img {
   width: 35px;
   height: 35px;
-  color: #FF9900;
-  
 }
 .btn-produtos {
   margin-right: 10px;

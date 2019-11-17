@@ -19,6 +19,7 @@ Route::get('/produtos_por_categoria_select', ['uses' => 'ProdutosController@prod
 
 Route::get('/cria_pedido/{id}', ['uses' => 'ProdutosController@cria_pedido']);
 Route::get('/carrinho', ['uses' => 'ProdutosController@carrinho']);
+Route::get('/exclui_pedido/{id}', ['uses' => 'ProdutosController@exclui_pedido']);
 
 //Route Dashboard ADMIN
 Route::get('/dashboard', ['uses' => 'Controller@dashboard']);

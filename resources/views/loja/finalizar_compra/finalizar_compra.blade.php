@@ -12,20 +12,21 @@
               <th scope="col">Total</th>
               <th scope="col">CEP</th>
               <th scope="col">Status</th>
+              <th scope="col">Ação</th>
             </tr>
           </thead>
           <tbody>
             @foreach ($pedidos as $pedido)
-            <tr>
-              <th scope="row">{{ $pedido->ped_id }}</th>
-              <td>{{ $pedido->ped_produto }}</td>
-              <td>{{ $pedido->ped_quantidade }}</td>
-              <td>{{ $pedido->ped_unitario }}</td>
-              <td>{{ $pedido->ped_total }}</td>
-              <td>{{ $pedido->ped_cep }}</td>
-              <td>{{ $pedido->ped_status }}</td>
-              {{-- <td><a class="btn btn-danger btn-remove-item" href="" role="button">Remover</a></td> --}}
-            </tr>
+              <tr>
+                <th scope="row">{{ $pedido->ped_id }}</th>
+                <td>{{ $pedido->ped_produto }}</td>
+                <td>{{ $pedido->ped_quantidade }}</td>
+                <td>{{ $pedido->ped_unitario }}</td>
+                <td>{{ $pedido->ped_total }}</td>
+                <td>{{ $pedido->ped_cep }}</td>
+                <td>{{ $pedido->ped_status }}</td>
+                <td><a href="/exclui_pedido/{{ $pedido->ped_id }}" class="badge badge-danger">Cancelar</a></td>
+              </tr>
             @endforeach
           </tbody>
         </table>
@@ -62,7 +63,9 @@
 @include('templates.footer.footer')
 
 <style>
-
+.modal-body small {
+  color: red;
+}
 .card {
   margin-right: 10px;
   padding: 30px;
