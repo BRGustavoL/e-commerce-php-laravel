@@ -33,10 +33,14 @@
   <div class="nav-bar-login-text">
     <p>Olá, seja bem-vindo</p>
     @if ($user_cookie = Cookie::get('user'))
-      <strong><a href="/dashboard_cliente">{{ $user_cookie }}</a></strong>
-      <strong><a href="/loggout">Sair</a></strong>
+      @if ($user_cookie == 'ADMIN')
+        <strong><a class="nav-action" href="/dashboard">{{ $user_cookie }}</a></strong>
+      @else
+        <strong><a class="nav-action" href="/dashboard_cliente">{{ $user_cookie }}</a></strong>
+      @endif
+      <strong><a class="nav-action" href="/loggout">Sair</a></strong>
     @else
-      <strong><a href="/login">Entrar</a></strong>
+      <strong><a class="nav-action" href="/login">Entrar</a></strong>
     @endif
   </div>
   <div class="nav-bar-carrinho">
@@ -47,6 +51,14 @@
 </nav>
 
 <style>
+.nav-action {
+  color: white;
+  transition: 0.4s all;
+}
+.nav-action:hover {
+  color: #FF9900;
+  text-decoration: none;
+}
 .carrinho-img {
   width: 35px;
   height: 35px;
