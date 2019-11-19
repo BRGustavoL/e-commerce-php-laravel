@@ -7,8 +7,7 @@
     <div class="container detalhe-produto-content">
       <div class="detalhe-imagem">
         @foreach($produto_detalhado as $prod)
-        <img src="{{ $prod->prod_imagem }}" class="d-block w-100" alt="...">
-        {{ $prod->prod_imagem }}
+        <img src="{{ $prod->prod_imagem }}" class="d-block w-100" alt="">
       </div>
       <div class="detalhe-text">
       

@@ -23,7 +23,7 @@ class LojaController extends BaseController
 
     $produtos_destaque = DB::table('produtos')
     ->select('prod_id', 'prod_nome', 'prod_preco', 'prod_imagem')
-    ->where('prod_isDestaque', '=', 1)
+    ->where('prod_isDestaque', 1)
     ->get();
     return view('loja.loja', ['produtos'=>$produtos, 'produtos_loja_destaque'=>$produtos_destaque]);
   }

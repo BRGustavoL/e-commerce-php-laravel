@@ -28,6 +28,18 @@
             <label>Senha</label>
             <input type="password" class="form-control" name="usu_senha" value="{{ $dado->usu_senha }}">
           </div>
+          <div class="form-group">
+            <label>Telefone</label>
+            <input type="number" class="form-control" name="usu_telefone" value="{{ $dado->usu_telefone }}">
+          </div>
+          <div class="form-group">
+            <label>CEP</label>
+            <input type="number" class="form-control" name="usu_cep" value="{{ $dado->usu_cep }}">
+          </div>
+          <div class="form-group">
+            <label>Complemento</label>
+            <input type="text" class="form-control" name="usu_complemento" value="{{ $dado->usu_complemento }}">
+          </div>
           <div class="btn-editar">
             <button type="submit" class="btn btn-warning">Salvar</button>
           </div>

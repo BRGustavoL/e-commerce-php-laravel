@@ -83,8 +83,8 @@ class ProdutosController extends BaseController
 
   public function detalhe_produto($id) {
     $produto_detalhado = DB::table('produtos')
-    ->select('*')
-    ->where('prod_id', '=', $id)
+    ->select('prod_id', 'prod_nome', 'prod_categoria', 'prod_quantidade', 'prod_preco', 'prod_imagem')
+    ->where('prod_id', $id)
     ->get();
     return view('loja.detalhe_produto.detalhe_produto', ['produto_detalhado' => $produto_detalhado]);
   }
@@ -112,7 +112,7 @@ class ProdutosController extends BaseController
       $ped_total = $produto_unitario * 1;
       $ped_date = date('Y-m-d');
 
-      $pedido = array('ped_produto'=>$produto_id, 'ped_usuario'=>$usuario_id, 'ped_quantidade'=>'1', 'ped_unitario'=>$produto_unitario, 'ped_total'=>$ped_total, 'ped_cep'=>'89803210', 'ped_status'=>'criado', 'ped_criado'=>$ped_date);
+      $pedido = array('ped_produto'=>$produto_id, 'ped_usuario'=>$usuario_id, 'ped_quantidade'=>'1', 'ped_unitario'=>$produto_unitario, 'ped_total'=>$ped_total, 'ped_cep'=>'89803210', 'ped_status'=>'Pendente', 'ped_criado'=>$ped_date);
       DB::table('pedidos')
       ->insert($pedido);
       return redirect('carrinho');
@@ -144,6 +144,23 @@ class ProdutosController extends BaseController
     ->where('ped_id', $id)
     ->delete();
     return redirect('carrinho');
+  }
+
+  public function confirmar_pedido() {
+    $user_cookie = Cookie::get('user');
+    if($user_cookie) {
+      $usuario = DB::table('usuarios')
+      ->select('usu_id')
+      ->where('usu_login', $user_cookie)
+      ->get();
+      foreach ($usuario as $usu) {
+        $user_id = $usu->usu_id;
+      }
+      $pedidos = DB::table('pedidos')
+      ->where('ped_usuario', $user_id)
+      ->update(['ped_status' => 'Pendente pagamento']);
+      return redirect('/');
+    }
   }
 
 }

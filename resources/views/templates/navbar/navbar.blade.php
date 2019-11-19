@@ -30,7 +30,7 @@
         </li>
       </ul>
     </div>
-    <a class="btn btn-outline-warning my-2 my-sm-0" href="/loggout">Sair</a>
+    <a class="btn btn-warning my-2 my-sm-0" href="/loggout">Sair</a>
   </div>
 </nav>
   

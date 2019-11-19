@@ -43,19 +43,18 @@
           <div class="pagamento-inputs">
             <br>
             <p>Número do Cartão</p>
-            <input type="text" class="form-control" placeholder="Nº do Cartão">
+            <input type="number" class="form-control" placeholder="Nº do Cartão" required>
             <br>
             <p>Data de Validade</p>
-            <input type="date" class="form-control">
+            <input type="date" class="form-control" required>
             <br>
             <p>Código CV</p>
-            <input type="text" class="form-control" placeholder="Código CV">
+            <input type="number" class="form-control" placeholder="Código CV" required>
             <br>
             <p>Código de Desconto</p>
-            <input type="text" class="form-control" placeholder="Código de Desconto">
+            <input type="text" class="form-control" placeholder="Código de Desconto" required>
             <br>
-            <a class="btn btn-success btn-confirmar-pgto" href="" role="button">Confirmar Pagamento</a>
-  
+            <a class="btn btn-success btn-confirmar-pgto" href="/confirmar_pedido" role="button">Confirmar Pedido</a>
           </div>
         </div>
       </div>

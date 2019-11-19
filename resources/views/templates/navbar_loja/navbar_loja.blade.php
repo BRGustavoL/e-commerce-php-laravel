@@ -34,11 +34,31 @@
     <p>Olá, seja bem-vindo</p>
     @if ($user_cookie = Cookie::get('user'))
       @if ($user_cookie == 'ADMIN')
-        <strong><a class="nav-action" href="/dashboard">{{ $user_cookie }}</a></strong>
+        <div class="btn-group">
+          <button type="button" class="btn-user btn btn-warning btn-sm dropdown-toggle" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
+            {{ $user_cookie }}
+          </button>
+          <div class="dropdown-menu dropdown-menu-lg-right">
+            <a class="dropdown-item" href="/dashboard">Estatísticas</a>
+            <a class="dropdown-item" href="/produtos">Produtos</a>
+            <a class="dropdown-item" href="/categorias">Categorias</a>
+            <a class="dropdown-item" href="/usuarios">Usuarios</a>
+            <a class="dropdown-item" href="/loggout">Sair</a>
+          </div>
+        </div>
       @else
-        <strong><a class="nav-action" href="/dashboard_cliente">{{ $user_cookie }}</a></strong>
+        <div class="btn-group">
+          <button type="button" class="btn-user btn btn-warning btn-sm dropdown-toggle" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
+            {{ $user_cookie }}
+          </button>
+          <div class="dropdown-menu dropdown-menu-lg-right">
+            <a class="dropdown-item" href="/dashboard_cliente">Estatísticas</a>
+            <a class="dropdown-item" href="/minha_conta">Minha conta</a>
+            <a class="dropdown-item" href="/meus_pedidos">Meus pedidos</a>
+            <a class="dropdown-item" href="/loggout">Sair</a>
+          </div>
+        </div>
       @endif
-      <strong><a class="nav-action" href="/loggout">Sair</a></strong>
     @else
       <strong><a class="nav-action" href="/login">Entrar</a></strong>
     @endif
@@ -51,6 +71,29 @@
 </nav>
 
 <style>
+.btn-on-dropdown {
+  color: white;
+  border: none;
+  text-decoration: none;
+}
+.btn-on-dropdown:hover {
+  color: white;
+  border: none;
+  text-decoration: none;
+}
+.btn-user {
+  margin-top: 5px;
+}
+.dropdown-item {
+  background-color: white;
+  color: black;
+  transition: 0.4s all;
+  cursor: pointer;
+}
+.dropdown-item:hover {
+  background-color: rgb(255, 193, 7);
+  color: #232F3E;
+}
 .nav-action {
   color: white;
   transition: 0.4s all;

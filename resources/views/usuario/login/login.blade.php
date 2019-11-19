@@ -29,8 +29,8 @@
             <button class="btn btn-outline-warning" type="submit">Entrar</button>
           </div>
           <div class="label-usu-cadastro">
-            <a class="a-usu-cadastro" href="{{ url('/esqueci_minha_senha') }}">Esqueci minha senha</a><br>
-            <a class="a-usu-cadastro" href="{{ url('/cadastro') }}">Não tem uma conta? Cadastre-se aqui...</a>
+            <a class="dropdown-item" href="/cadastro">Novo por aqui? Cadastre-se</a>
+            <a class="dropdown-item" href="/esqueci_minha_senha">Esqueceu sua senha?</a>
           </div>
         </form>
       </div>
@@ -53,6 +53,16 @@
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
+      }
+      .dropdown-item {
+        opacity: 0.7;
+        font-size: 14px;
+        transition: 0.4s all;
+        border-radius: 5px;
+      }
+      .dropdown-item:hover {
+        background-color: whitesmoke;
+        color: black;
       }
       .card-header {
         background-color: white;

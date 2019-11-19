@@ -67,3 +67,7 @@ Route::post('/salvar_minha_conta', ['uses' => 'DashboardClientController@salvar_
 //Route Meus Pedidos (Dashboard Usuário)
 Route::get('/meus_pedidos', ['uses' => 'DashboardClientController@meus_pedidos']);
 
+//Route Compras
+Route::get('/confirmar_pedido', ['uses' => 'ProdutosController@confirmar_pedido']);
+
+
