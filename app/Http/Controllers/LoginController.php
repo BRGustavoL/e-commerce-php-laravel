@@ -28,8 +28,7 @@ class LoginController extends BaseController
 			$usu_login = $req -> input('usu_login');
 			$usu_email = $req -> input('usu_email');
 			$usu_senha = $req -> input('usu_senha');
-			$usu_senha_cript = md5($usu_senha);
-			$data = array('usu_login'=>$usu_login, 'usu_email'=>$usu_email, 'usu_senha'=>$usu_senha_cript);
+			$data = array('usu_login'=>$usu_login, 'usu_email'=>$usu_email, 'usu_senha'=>$usu_senha);
 			DB::table('usuarios')->insert($data);
 			Mail::send('email.email_user_register', ['usuario'=>$usu_login, 'senha'=>$usu_senha, 'email'=>$usu_email], function($message){
 				$message->from('gustavolovera10@gmail.com', 'Gustavo - E-Commerce');
@@ -42,12 +41,12 @@ class LoginController extends BaseController
     public function valida_login_usuario(Request $req) {
 			$usuario = $req -> input('usu_login');
 			$senha = $req -> input('usu_senha');
-			$senha_cript = md5($senha);
+			// $senha_cript = md5($senha);
 
 			$user_admin = 'ADMIN';
-			$pass_admin = md5('MASTER');
+			$pass_admin = 'MASTER';
 
-			$check_login = DB::table('usuarios')->where(['usu_login'=>$usuario, 'usu_senha'=>$senha_cript])->get();
+			$check_login = DB::table('usuarios')->where(['usu_login'=>$usuario, 'usu_senha'=>$senha])->get();
 
 			$log_entrada = date('Y:m:d H:i');
 			
@@ -58,15 +57,15 @@ class LoginController extends BaseController
 					Cookie::queue('in', $log_entrada, 120);			
 					return view('dashboard.dashboard');
 				}
-				if($user->usu_login == $usuario && $user->usu_senha == $senha_cript) {
+				if($user->usu_login == $usuario && $user->usu_senha == $senha) {
 					Cookie::queue('user', $user->usu_login, 120);
 					Cookie::queue('in', $log_entrada, 120);	
 					return redirect('');
 				}
-				if($user->usu_login != $usuario && $user->usu_senha != $senha_cript) {
-					return view('usuario.login.login');
+				if($user->usu_login != $usuario && $user->usu_senha != $senha) {
 					echo "Usuário não encontrado!";
 				}
+				return view('usuario.login.login');
 			}
 		}
 		

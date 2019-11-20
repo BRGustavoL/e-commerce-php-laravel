@@ -68,9 +68,10 @@ class DashboardClientController extends BaseController
       $usu_telefone = $req->input('usu_telefone');
       $usu_cep = $req->input('usu_cep');
       $usu_complemento = $req->input('usu_complemento');
+      $usu_cartao = $req->input('usu_cartao');
       DB::table('usuarios')
       ->where('usu_id', $usu_id)
-      ->update(array('usu_login'=>$usu_login, 'usu_email'=>$usu_email, 'usu_senha'=>$usu_senha));
+      ->update(array('usu_login'=>$usu_login, 'usu_email'=>$usu_email, 'usu_senha'=>$usu_senha, 'usu_telefone'=>$usu_telefone, 'usu_cep'=>$usu_cep, 'usu_complemento'=>$usu_complemento, 'usu_cartao'=>$usu_cartao));
       Cookie::queue('user', $usu_login, 120);		
     }
     return redirect('minha_conta');

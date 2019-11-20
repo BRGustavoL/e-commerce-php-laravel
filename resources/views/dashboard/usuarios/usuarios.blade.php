@@ -23,12 +23,7 @@
           <td>{{ $usuario->usu_login }} </td>
           <td>{{ $usuario->usu_email }} </td>
           <td>
-            {{-- <a class="badge badge-primary" data-toggle="modal" data-target="#ExemploModalCentralizado" href="">Ver Produto</a>
-            @if (!$produto->prod_isDestaque)
-              <a class="badge badge-primary" href="/destaca_produto/{{ $produto->prod_id }}">Adicionar Destaque</a>
-            @elseif ($produto->prod_isDestaque)
-              <a class="badge badge-primary" href="/remover_destaque_produto/{{ $produto->prod_id }}">Remover Destaque</a>
-            @endif --}}
+            <a class="badge badge-warning" href="/edita_usuario/{{ $usuario->usu_id }}">Editar</a>
             <a class="badge badge-danger" href="/deleta_usuario/{{ $usuario->usu_id }}">Excluir</a>
           </td>
         </tr>

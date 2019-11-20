@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
 use DB;
+use Cookie;
 
 class UsuariosController extends BaseController
 {
@@ -40,6 +41,26 @@ class UsuariosController extends BaseController
     DB::table('usuarios')
     ->where('usu_id', '=', $id)
     ->delete();
+    return redirect('usuarios');
+  }
+
+  public function edita_usuario($id) {
+    $query_edita = DB::table('usuarios')
+    ->select('usu_id', 'usu_login', 'usu_email', 'usu_senha')
+    ->where('usu_id', $id)
+    ->get();
+    return view('dashboard.usuarios.editar', ['usuario'=>$query_edita]);
+  }
+
+  public function salva_edicao_usuario(Request $req) {
+    $usu_id_edit = $req -> input('usu_id_edit');
+    $usu_login_edit = $req -> input('usu_login_edit');
+    $usu_email_edit = $req -> input('usu_email_edit');
+    $usu_senha_edit = $req -> input('usu_senha_edit');
+    DB::table('usuarios')
+    ->where('usu_id', $usu_id_edit)
+    ->update(['usu_login'=>$usu_login_edit, 'usu_email'=>$usu_email_edit, 'usu_senha'=>$usu_senha_edit]);
+    Cookie::queue('user', $usu_login_edit, 120);		
     return redirect('usuarios');
   }
 }

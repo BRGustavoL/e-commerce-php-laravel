@@ -46,6 +46,8 @@ Route::get('/usuarios', ['uses' => 'UsuariosController@usuarios']);
 Route::get('/cadastro_usuario', ['uses' => 'UsuariosController@cadastro_usuario']);
 Route::post('/criar_usuario', ['uses' => 'UsuariosController@criar_usuario']);
 Route::get('/deleta_usuario/{id}', ['uses' => 'UsuariosController@deleta_usuario']);
+Route::get('/edita_usuario/{id}', ['uses' => 'UsuariosController@edita_usuario']);
+Route::put('/salva_edicao_usuario', ['uses' => 'UsuariosController@salva_edicao_usuario']);
 
 //Route Usuário (Login)
 Route::get('/login', ['uses' => 'LoginController@usuario_login']);
