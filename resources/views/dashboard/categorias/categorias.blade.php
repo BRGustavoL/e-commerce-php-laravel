@@ -21,6 +21,7 @@
           <th scope="row">{{ $categoria->cate_id }}</th>
           <td>{{ $categoria->cate_nome }} </td>
           <td>
+            <a class="badge badge-warning" href="/edita_categoria/{{ $categoria->cate_id }}">Editar</a>
             <a class="badge badge-danger" href="/deleta_categoria/{{ $categoria->cate_id }}">Excluir</a>
           </td>
         </tr>

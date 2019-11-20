@@ -37,6 +37,10 @@
           <label>Complemento</label>
           <input type="text" class="form-control" name="usu_complemento" value="{{ $dado->usu_complemento }}" disabled>
         </div>
+        <div class="form-group">
+          <label>Cartão</label>
+          <input type="number" class="form-control" name="usu_cartao" value="{{ $dado->usu_cartao }}" disabled>
+        </div>
         <div class="btn-editar">
           <a class="btn btn-warning" href="/editar_minha_conta" role="button">Editar</a>
         </div>
@@ -52,6 +56,7 @@ body {
 }
 .card {
   margin-top: 60px;
+  margin-bottom: 60px;
 }
 .btn-editar {
   display: flex;

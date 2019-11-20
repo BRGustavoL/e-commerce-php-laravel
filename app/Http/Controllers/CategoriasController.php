@@ -39,4 +39,21 @@ class CategoriasController extends BaseController
     ->delete();
     return redirect('categorias');
   }
+
+  public function edita_categoria($id) {
+    $dado_categoria = DB::table('categorias')
+    ->select('*')
+    ->where('cate_id', $id)
+    ->get();
+    return view('dashboard.categorias.editar', ['categoria'=>$dado_categoria]);
+  }
+
+  public function salva_edicao_categoria(Request $req) {
+    $cate_id_edit = $req -> input('cate_id_edit');
+    $cate_nome_edit = $req -> input('cate_nome_edit');
+    DB::table('categorias')
+    ->where('cate_id', $cate_id_edit)
+    ->update(['cate_nome'=>$cate_nome_edit]);
+    return redirect('categorias');
+  }
 }

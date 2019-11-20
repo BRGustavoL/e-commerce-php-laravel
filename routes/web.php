@@ -38,6 +38,8 @@ Route::get('/categorias', ['uses' => 'CategoriasController@categorias']);
 Route::get('/cadastro_categoria', ['uses' => 'CategoriasController@cadastro_categoria']);
 Route::post('/criar_categoria', ['uses' => 'CategoriasController@criar_categoria']);
 Route::get('/deleta_categoria/{id}', ['uses' => 'CategoriasController@deleta_categoria']);
+Route::get('/edita_categoria/{id}', ['uses' => 'CategoriasController@edita_categoria']);
+Route::put('/salva_edicao_categoria', ['uses' => 'CategoriasController@salva_edicao_categoria']);
 
 //Route Usuários (Dashboard ADMIN)
 Route::get('/usuarios', ['uses' => 'UsuariosController@usuarios']);
@@ -61,7 +63,7 @@ Route::get('/dashboard_cliente', ['uses' => 'DashboardClientController@dashboard
 //Route Minha Conta (Dashboard Usuário)
 Route::get('/minha_conta', ['uses' => 'DashboardClientController@minha_conta']);
 Route::get('/editar_minha_conta', ['uses' => 'DashboardClientController@editar_minha_conta']);
-Route::post('/salvar_minha_conta', ['uses' => 'DashboardClientController@salvar_minha_conta']);
+Route::put('/salvar_minha_conta', ['uses' => 'DashboardClientController@salvar_minha_conta']);
 
 
 //Route Meus Pedidos (Dashboard Usuário)
