@@ -19,11 +19,15 @@
     </div>
     <hr>
     <div class="cate-cadastro-btn-cadastrar">
-      <button class="btn btn-primary" type="submit">+ Salvar</button>
+      <a class="cancel-buttton btn btn-secondary" href="/categorias">Cancelar</a>
+      <button class="btn btn-primary" type="submit">Salvar</button>
     </div>
   </form>
 </div>
 <style>
+  .cancel-buttton {
+    margin-right: 10px;
+  }
   .label-cate-nome {
     margin-top: 15px;
   }

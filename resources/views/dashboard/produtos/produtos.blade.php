@@ -38,7 +38,7 @@
             @elseif ($produto->prod_isDestaque)
             <a class="badge badge-primary" href="/remover_destaque_produto/{{ $produto->prod_id }}">Remover Destaque</a>
             @endif
-            <a class="badge badge-warning" href="/altera_produto/{{ $produto->prod_id }}">Editar</a>
+            <a class="badge badge-warning" href="/edita_produto/{{ $produto->prod_id }}">Editar</a>
             <a class="badge badge-danger" href="/deleta_produto/{{ $produto->prod_id }}">Excluir</a>
           </td>
         </tr>

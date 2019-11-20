@@ -32,6 +32,8 @@ Route::post('/criar_produto', ['uses' => 'ProdutosController@criar_produto']);
 Route::get('/deleta_produto/{id}', ['uses' => 'ProdutosController@deleta_produto']);
 Route::get('/destaca_produto/{id}', ['uses' => 'ProdutosController@destaca_produto']);
 Route::get('/remover_destaque_produto/{id}', ['uses' => 'ProdutosController@remover_destaque_produto']);
+Route::get('/edita_produto/{id}', ['uses' => 'ProdutosController@edita_produto']);
+Route::put('/salva_edicao_produto', ['uses' => 'ProdutosController@salva_edicao_produto']);
 
 //Route Categorias (Dashboard ADMIN)
 Route::get('/categorias', ['uses' => 'CategoriasController@categorias']);

@@ -182,4 +182,30 @@ class ProdutosController extends BaseController
     }
   }
 
+  public function edita_produto($id) {
+    $query_produtos = DB::table('produtos')
+    ->select('prod_id', 'prod_nome', 'prod_preco', 'prod_quantidade')
+    ->where('prod_id', $id)
+    ->get();
+
+    $query_categorias = DB::table('categorias')
+    ->select('cate_id', 'cate_nome')
+    ->get();
+
+    return view('dashboard.produtos.editar', ['produtos'=>$query_produtos, 'categorias'=>$query_categorias]);
+
+  }
+
+  public function salva_edicao_produto(Request $req) {
+    $prod_id_edit = $req -> input('prod_id_edit');
+    $prod_nome_edit = $req -> input('prod_nome_edit');
+    $prod_categoria_edit = $req -> input('prod_categoria_edit');
+    $prod_preco_edit = $req -> input('prod_preco_edit');
+    $prod_qtd_edit = $req -> input('prod_qtd_edit');
+    DB::table('produtos')
+    ->where('prod_id', $prod_id_edit)
+    ->update(['prod_nome'=>$prod_nome_edit, 'prod_categoria'=>$prod_categoria_edit, 'prod_quantidade'=>$prod_qtd_edit, 'prod_preco'=>$prod_preco_edit]);
+    return redirect('produtos');
+  }
+
 }

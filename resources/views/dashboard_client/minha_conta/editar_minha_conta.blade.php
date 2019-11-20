@@ -44,6 +44,7 @@
               <input type="number" class="form-control" name="usu_cartao" value="{{ $dado->usu_cartao }}">
             </div>
             <div class="btn-editar">
+              <a class="cancel-buttton btn btn-secondary" href="/minha_conta">Cancelar</a>
               <button type="submit" class="btn btn-warning">Salvar</button>
             </div>
           </form>
@@ -56,6 +57,9 @@
 <style>
 body {
   background-color: whitesmoke;
+}
+.cancel-buttton {
+  margin-right: 10px;
 }
 .card {
   margin-top: 60px;

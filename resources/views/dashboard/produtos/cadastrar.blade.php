@@ -39,15 +39,21 @@
     </div>
     <hr>
     <div class="prod-cadastro-btn-cadastrar">
-      <button class="btn btn-primary" type="submit">+ Cadastrar</button>
+      <a class="cancel-buttton btn btn-secondary" href="/produtos">Cancelar</a>
+      <button class="btn btn-primary" type="submit">Cadastrar</button>
     </div>
   </form>
 </div>
 <style>
+  .cancel-buttton {
+    margin-right: 10px;
+  }
   .option-display-none {
     visibility:hidden;
   }
   .prod-cadastro-btn-cadastrar {
+    display: flex;
+    justify-content: flex-end;
     margin-bottom: 20px;
   }
 </style>
