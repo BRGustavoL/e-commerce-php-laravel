@@ -132,7 +132,7 @@ class ProdutosController extends BaseController
       }
       $pedidos = DB::table('pedidos')
       ->select('*')
-      ->where('ped_usuario', $user_id)
+      ->where(['ped_usuario'=>$user_id, 'ped_status'=>'Pendente'])
       ->get();
       return view('loja.finalizar_compra.finalizar_compra', ['pedidos'=>$pedidos]);
     }
@@ -143,7 +143,7 @@ class ProdutosController extends BaseController
     DB::table('pedidos')
     ->where('ped_id', $id)
     ->delete();
-    return redirect('carrinho');
+    return redirect('/');
   }
 
   public function confirmar_pedido() {
@@ -159,6 +159,25 @@ class ProdutosController extends BaseController
       $pedidos = DB::table('pedidos')
       ->where('ped_usuario', $user_id)
       ->update(['ped_status' => 'Pendente pagamento']);
+      $quantidade = DB::table('pedidos')
+      ->select('ped_produto', 'ped_quantidade')
+      ->where('ped_usuario', $user_id)
+      ->get();
+      foreach ($quantidade as $qtd) {
+        $cod_produto = $qtd->ped_produto;
+        $qtd_vendida = $qtd->ped_quantidade;
+      }
+      $quantidade_estoque = DB::table('produtos')
+      ->select('prod_vendidos')
+      ->where('prod_id', $cod_produto)
+      ->get();
+      foreach ($quantidade_estoque as $qtd_est) {
+        $qtd_atual = $qtd_est->prod_vendidos;
+      }
+      $qtd_vendida = $qtd_atual + $qtd_vendida;
+      DB::table('produtos')
+      ->where('prod_id', $cod_produto)
+      ->update(['prod_vendidos'=>$qtd_vendida]);
       return redirect('/');
     }
   }

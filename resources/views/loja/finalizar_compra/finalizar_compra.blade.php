@@ -31,7 +31,7 @@
           </tbody>
         </table>
         <div class="card-footer">
-          <p>Total: R$ {{ $pedido->ped_total }}</p>
+          {{-- <p>Total: R$ {{ $pedido->ped_total }}</p> --}}
         </div>
       </div>
       <div class="card carrinho-pagamento">
