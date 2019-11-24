@@ -22,6 +22,9 @@
         <li class="nav-item">
           <a class="nav-link" href="/meus_pedidos">Meus pedidos</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/carrinho">Carrinho</a>
+        </li>
         <li class="nav-exit nav-item">
           <a class="nav-link" href="/loggout">Sair</a>
         </li>
