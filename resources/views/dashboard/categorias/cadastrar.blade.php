@@ -16,7 +16,7 @@
     <hr>
     <div class="cate-cadastro-btn-cadastrar">
       <a class="cancel-buttton btn btn-secondary" href="/categorias">Cancelar</a>
-      <button class="btn btn-primary" type="submit">Cadastrar</button>
+      <button class="btn submit-button btn-primary" type="submit">Cadastrar</button>
     </div>
   </form>
 </div>
@@ -31,6 +31,15 @@
     display: flex;
     justify-content: flex-end;
     margin-bottom: 20px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .cate-cadastro-btn-cadastrar .btn {
+      display: block;
+    }
+    .submit-button, .cancel-buttton {
+      width: 100%;
+    }
   }
 </style>
 

@@ -54,8 +54,12 @@ class LoginController extends BaseController
 			foreach($check_login as $user) {
 				if($user->usu_login == $user_admin && $user->usu_senha == $pass_admin) {
 					Cookie::queue('user', $user->usu_login, 120);			
-					Cookie::queue('in', $log_entrada, 120);			
-					return view('dashboard.dashboard');
+					Cookie::queue('in', $log_entrada, 120);
+					$vendidos = DB::table('produtos')
+					->select('prod_id', 'prod_nome', 'prod_vendidos')
+					->orderBy('prod_vendidos', 'DESC')
+					->get();	
+					return view('dashboard.dashboard', ['vendidos'=>$vendidos]);
 				}
 				if($user->usu_login == $usuario && $user->usu_senha == $senha) {
 					Cookie::queue('user', $user->usu_login, 120);

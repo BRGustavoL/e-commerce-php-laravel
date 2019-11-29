@@ -18,7 +18,20 @@ class DashboardClientController extends BaseController
   use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
   public function dashboard_cliente() {
-    return view('dashboard_client.dashboard_client');
+    $user_cookie = Cookie::get('user');
+    $dados_conta = DB::table('usuarios')
+    ->select('usu_id')
+    ->where('usu_login', '=', $user_cookie)
+    ->get();
+    foreach ($dados_conta as $dado) {
+      $dado_id = $dado->usu_id;
+    }
+    $ultimos_pedidos = DB::table('pedidos')
+    ->select('*')
+    ->where('ped_usuario', $dado_id)
+    ->limit(5)
+    ->get();
+    return view('dashboard_client.dashboard_client', ['ultimos_pedidos'=>$ultimos_pedidos]);
   }
 
   public function minha_conta() {

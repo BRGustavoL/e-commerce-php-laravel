@@ -17,7 +17,11 @@ class Controller extends BaseController
 	use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
 	public function dashboard() {
-		return view('dashboard.dashboard');
+		$vendidos = DB::table('produtos')
+    ->select('prod_id', 'prod_nome', 'prod_vendidos')
+    ->orderBy('prod_vendidos', 'DESC')
+    ->get();	
+    return view('dashboard.dashboard', ['vendidos'=>$vendidos]);
 	}
 	
   public function loggout() {

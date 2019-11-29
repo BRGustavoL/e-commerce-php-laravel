@@ -5,7 +5,7 @@
   <div class="container meus-pedidos-content">
     <div class="card">
       <div class="card-header"><strong>Meus Pedidos</strong></div>
-      <div class="card-body">
+      <div class="card-body table-responsive">
         <table class="table">
           <thead>
             <tr>
@@ -42,5 +42,12 @@
 <style>
 .meus-pedidos-content {
   margin-top: 60px;
+}
+
+@media screen and (max-width: 768px) {
+  .meus-pedidos-content {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
 }
 </style>

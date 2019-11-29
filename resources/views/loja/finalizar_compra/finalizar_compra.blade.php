@@ -1,7 +1,7 @@
 @include('templates.header.header')
   @include('templates.navbar_loja.navbar_loja')
     <div class="container carinho-content">
-      <div class="card carrinho-tabela">
+      <div class="card carrinho-tabela table-responsive">
         <table class="table">
           <thead>
             <tr>
@@ -91,6 +91,18 @@
 
 .btn-confirmar-pgto {
   width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .carinho-content {
+    display: flex;
+    flex-direction: column;
+  }
+  .carrinho-pagamento {
+    width: 100%;
+    margin-bottom: 20px;
+    margin-top: 20px;
+  } 
 }
 
 </style>

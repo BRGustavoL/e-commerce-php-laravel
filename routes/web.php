@@ -24,6 +24,7 @@ Route::get('/exclui_pedido/{id}', ['uses' => 'ProdutosController@exclui_pedido']
 //Route Dashboard ADMIN
 Route::get('/dashboard', ['uses' => 'Controller@dashboard']);
 Route::get('/dashboard_loggout', ['uses'=>'LojaController@dashboard_loggout']);
+Route::get('/dashboard_info', ['uses'=>'DashboardController@dashboard_info']);
 
 //Route Produtos (Dashboard ADMIN)
 Route::get('/produtos', ['uses' => 'ProdutosController@produtos']);

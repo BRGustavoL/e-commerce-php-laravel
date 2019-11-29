@@ -2,7 +2,7 @@
   <div class="dashboard-nav">
     @include('templates.navbar.navbar')
   </div>
-  <div class="container dashboard-conteudo">
+  <div class="container dashboard-conteudo table-responsive">
     <div class="btn-cadastrar-categoria">
       <a class="btn-cadastrar btn btn-primary" href="/cadastro_categoria" role="button">+ Categoria</a>
     </div>
@@ -36,6 +36,14 @@
       justify-content: flex-end;
       margin-bottom: 20px;
       margin-top: 20px;
+    }
+    @media screen and (max-width: 768px) {
+      .btn-cadastrar-categoria .btn {
+        display: block;
+      }
+      .btn-cadastrar {
+        width: 100%;
+      }
     }
   </style>
 

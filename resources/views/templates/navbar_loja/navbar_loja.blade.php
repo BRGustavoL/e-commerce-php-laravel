@@ -182,4 +182,24 @@ nav .nav-link:hover{
 .material-icons {
   color: #FFF;
 }
+
+@media screen and (max-width: 768px) {
+  .nav-bar-login-text {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    margin: 10px;
+    /* margin-left: 25px; */
+    padding: 5px;
+  }
+  .nav-bar-carrinho {
+    margin: 10px;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-end;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+}
 </style>

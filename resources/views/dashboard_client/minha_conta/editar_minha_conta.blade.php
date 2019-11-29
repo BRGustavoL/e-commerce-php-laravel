@@ -69,4 +69,16 @@ body {
   display: flex;
   justify-content: flex-end;
 }
+
+@media screen and (max-width: 768px) {
+  .card {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .btn-editar .btn {
+    display: block;
+    width: 100%;
+  }
+}
 </style>

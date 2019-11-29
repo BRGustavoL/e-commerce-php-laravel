@@ -6,7 +6,7 @@
     <div class="btn-cadastrar-produto">
       <a class="btn-cadastrar btn btn-primary" href="/cadastro_produto" role="button">+ Produto</a>
     </div>
-    <table class="table">
+    <table class="table table-responsive">
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -53,6 +53,14 @@
       justify-content: flex-end;
       margin-bottom: 20px;
       margin-top: 20px;
+    }
+    @media screen and (max-width: 768px) {
+      .btn-cadastrar-produto .btn {
+        display: block;
+      }
+      .btn-cadastrar {
+        width: 100%;
+      }
     }
   </style>
 

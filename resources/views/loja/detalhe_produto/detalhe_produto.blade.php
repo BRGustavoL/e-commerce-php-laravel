@@ -132,6 +132,17 @@
       margin-left: 10px;
       width: 50%;
     }
+
+    @media screen and (max-width: 768px) {
+      .detalhe-produto-content {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+      .detalhe-imagem, .detalhe-text {
+        width: 100%;
+      }
+    }
   </style>
 
 @include('templates.footer.footer')

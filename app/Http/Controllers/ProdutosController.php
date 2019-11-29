@@ -16,10 +16,6 @@ class ProdutosController extends BaseController
 {
   use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-  public function produtos_por_categoria($id) {
-    
-  }
-
   public function produtos_por_categoria_select() {
     $select_categorias = DB::table('categorias')
     ->select('*')

@@ -6,7 +6,7 @@
     <div class="btn-cadastrar-usuario">
       <a class="btn-cadastrar btn btn-primary" href="/cadastro_usuario" role="button">+ Usuário</a>
     </div>
-    <table class="table">
+    <table class="table table-responsive">
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -38,6 +38,20 @@
       justify-content: flex-end;
       margin-bottom: 20px;
       margin-top: 20px;
+    }
+    @media screen and (max-width: 768px) {
+      .btn-cadastrar-usuario .btn {
+        display: block;
+      }
+      .btn-cadastrar {
+        width: 100%;
+      }
+      .btn-cadastrar-usuario {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 20px;
+        margin-top: 20px;
+      }
     }
   </style>
 @include('templates.footer.footer')
