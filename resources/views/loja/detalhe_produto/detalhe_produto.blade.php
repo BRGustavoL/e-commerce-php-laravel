@@ -13,7 +13,55 @@
       
         <h1>{{ $prod->prod_nome }}</h1>
         <small>Código: {{ $prod->prod_id }} / Categoria: {{ $prod->prod_categoria }}</small>
-
+        @if ($prod->prod_avaliacao == 0 || $prod->prod_avaliacao == null)
+          <div class="detalhe-avaliacao">
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+          </div>
+        @elseif ($prod->prod_avaliacao == 1)
+          <div class="detalhe-avaliacao">
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+          </div>
+        @elseif ($prod->prod_avaliacao == 2)
+          <div class="detalhe-avaliacao">
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+          </div>
+        @elseif ($prod->prod_avaliacao == 3)
+          <div class="detalhe-avaliacao">
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+          </div>
+        @elseif ($prod->prod_avaliacao == 4)
+          <div class="detalhe-avaliacao">
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+          </div>
+        @elseif ($prod->prod_avaliacao == 5)
+          <div class="detalhe-avaliacao">
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+          </div>
+        @endif
         <hr>
         <p>Lorem ipsum dolor sit, amet consectetur 
           adipisicing elit. Fugiat natus pariatur iure, 
@@ -26,7 +74,7 @@
           <h3>R$ {{ $prod->prod_preco }}</h3>
           <small>à vista</small>
         </div>
-        <small>Ou 10x sem juros de R$ {{ $prod->prod_preco/10 }}.00</small>
+        <small>Ou 10x de R$ {{ $prod->prod_preco/10 }}.00 (sem juros)</small>
 
         <hr>
         <div class="detalhe-text-input">
@@ -59,6 +107,9 @@
         <div class="buttons-produto-acoes">
           <a href="/cria_pedido/{{ $prod->prod_id }}" class="btn btn-warning btn-carrinho">+ Carrinho</a>
           <a href="/cria_pedido/{{ $prod->prod_id }}" class="btn btn-success btn-comprar">Comprar</a>
+        </div>
+        <div class="button-avalia">
+          <a href="/avalia_produto/{{ $prod->prod_id }}" class="btn btn-primary btn-avalia">Avaliar Produto</a>
         </div>
       @endforeach
       </div>
@@ -132,7 +183,13 @@
       margin-left: 10px;
       width: 50%;
     }
-
+    .btn-avalia {
+      margin-top: 10px;
+      width: 100%;
+    }
+    .checked {
+      color: #FF9900;
+    }
     @media screen and (max-width: 768px) {
       .detalhe-produto-content {
         display: flex;

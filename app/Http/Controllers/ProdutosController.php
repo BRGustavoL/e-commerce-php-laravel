@@ -79,7 +79,7 @@ class ProdutosController extends BaseController
 
   public function detalhe_produto($id) {
     $produto_detalhado = DB::table('produtos')
-    ->select('prod_id', 'prod_nome', 'prod_categoria', 'prod_quantidade', 'prod_preco', 'prod_imagem')
+    ->select('prod_id', 'prod_nome', 'prod_categoria', 'prod_quantidade', 'prod_preco', 'prod_imagem', 'prod_avaliacao')
     ->where('prod_id', $id)
     ->get();
     return view('loja.detalhe_produto.detalhe_produto', ['produto_detalhado' => $produto_detalhado]);
@@ -204,4 +204,28 @@ class ProdutosController extends BaseController
     return redirect('produtos');
   }
 
+
+  public function avalia_produto($id) {
+    $produto_avaliar = DB::table('produtos')
+    ->select('prod_id')
+    ->where('prod_id', $id)
+    ->get();
+
+    foreach ($produto_avaliar as $el) {
+      $produto_id = $el->prod_id;
+    }
+
+    return view('loja.avalia_produto.avalia_produto', ['produto_id'=>$produto_id]);
+  }
+
+  public function finaliza_avaliacao(Request $req) {
+    $prod_id = $req -> input('prod_id');
+    $rating = $req -> input('rating');
+    $avaliacao = intval($rating);
+    DB::table('produtos')
+    ->where('prod_id', '=', $prod_id)
+    ->update(['prod_avaliacao' => $avaliacao]);
+    return redirect('/');
+
+  }
 }
